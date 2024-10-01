@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: src/VerticalSliceTemplate.Api/Dockerfile
     ports:
-      - 7202:8080
+      - 5000:8080
     networks:
       - verticalslicetemplate-bridge
 
