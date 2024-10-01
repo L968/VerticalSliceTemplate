@@ -1,0 +1,39 @@
+services:
+  verticalslicetemplate.api:
+    image: ${DOCKER_REGISTRY-}verticalslicetemplate.api
+    container_name: verticalslicetemplate.api
+    restart: "no"
+    command: ["sleep", "infinity"]
+    build:
+      context: .
+      dockerfile: src/VerticalSliceTemplate.Api/Dockerfile
+    ports:
+      - 7202:8080
+    networks:
+      - verticalslicetemplate-bridge
+
+  verticalslicetemplate.mysql:
+    image: mysql:8.4.0
+    container_name: verticalslicetemplate.mysql
+    restart: unless-stopped
+    networks:
+      - verticalslicetemplate-bridge
+    environment:
+      MYSQL_DATABASE: verticalslicetemplate
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 5
+      interval: 5s
+      timeout: 30s
+
+volumes:
+  mysql-data:
+
+networks:
+  verticalslicetemplate-bridge:
+    driver: bridge
