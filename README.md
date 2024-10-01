@@ -2,15 +2,16 @@
 
 This repository provides a template for creating .NET projects using **Vertical Slice Architecture**, integrated with **Docker Compose**, **Entity Framework Core** and more. This template helps you quickly set up and organize your project with a modular structure and seamless database management.
 
-## Features
+## Technologies and patterns
 
-- **Vertical Slice Architecture**: Structure your project by feature, making it easier to maintain and scale.
-- **Docker Compose**: Pre-configured for containerization, allowing you to run the entire project with one command.
-- **MySQL Integration**: The template uses MySQL as the default database, with easy setup through Docker.
-- **EF Core**: Simplified database management with Entity Framework Core, allowing you to apply and manage migrations effortlessly.
-- **Health Checks**: Integrated health checks for monitoring the application state.
-- **Fluent Validation**: Provides a clean and expressive way to validate models.
-- **MediatR**: Enables in-process messaging for better separation of concerns.
+- [Vertical Slice Architecture](https://www.milanjovanovic.tech/blog/vertical-slice-architecture) Structure your project by feature, making it easier to maintain and scale.
+- [Docker Compose](https://docs.docker.com/compose/): Pre-configured for containerization, allowing you to run the entire project with one command.
+- [MySQL](https://www.mysql.com/): The template uses MySQL as the default database, with easy setup through Docker.
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/): Simplified database management with Entity Framework Core, allowing you to apply and manage migrations effortlessly.
+- [Health Checks](https://www.nuget.org/packages/AspNetCore.HealthChecks.UI.Client): Integrated health checks for monitoring the application state.
+- [FluentValidation](https://fluentvalidation.net/): Provides a clean and expressive way to validate models.
+- [MediatR](https://github.com/jbogard/MediatR): Enables in-process messaging for better separation of concerns.
+- [xUnit](https://xunit.net/), [Moq](https://github.com/moq): Testing libraries
 
 ## Prerequisites
 
@@ -23,6 +24,7 @@ This repository provides a template for creating .NET projects using **Vertical 
 
 ```bash
 git clone https://github.com/L968/VerticalSliceTemplate.git
+
 cd VerticalSliceTemplate
 ```
 
@@ -50,6 +52,7 @@ To run the application with Docker Compose, use the following command:
 
 ```bash
 cd YourProjectName
+
 docker-compose up
 ```
 
