@@ -5,6 +5,7 @@
 **/.gitignore
 **/.project
 **/.settings
+**/.template.config
 **/.toolstarget
 **/.vs
 **/.vscode
