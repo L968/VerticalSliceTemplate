@@ -2,8 +2,7 @@ services:
   verticalslicetemplate.api:
     image: ${DOCKER_REGISTRY-}verticalslicetemplate.api
     container_name: verticalslicetemplate.api
-    restart: "no"
-    command: ["sleep", "infinity"]
+    restart: unless-stopped
     build:
       context: .
       dockerfile: src/VerticalSliceTemplate.Api/Dockerfile
