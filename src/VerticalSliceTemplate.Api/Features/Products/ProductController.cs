@@ -8,8 +8,8 @@ using VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
 namespace VerticalSliceTemplate.Api.Features.Products;
 
 [ApiController]
-[Route("api/[controller]")]
-public class ProductsController(IMediator mediator) : ControllerBase
+[Route("[controller]")]
+public class ProductController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
