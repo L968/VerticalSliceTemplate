@@ -34,7 +34,7 @@ public class GetProductsTests
         var query = new GetProductsQuery();
 
         // Act
-        var result = await _handler.Handle(query, CancellationToken.None);
+        IEnumerable<GetProductsResponse> result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
         Assert.NotNull(result);
@@ -51,7 +51,7 @@ public class GetProductsTests
         var query = new GetProductsQuery();
 
         // Act
-        var result = await _handler.Handle(query, CancellationToken.None);
+        IEnumerable<GetProductsResponse> result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
         Assert.NotNull(result);

@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.CreateProduct;
 
-public class CreateProductValidator : AbstractValidator<CreateProductCommand>
+internal sealed class CreateProductValidator : AbstractValidator<CreateProductCommand>
 {
     public CreateProductValidator()
     {

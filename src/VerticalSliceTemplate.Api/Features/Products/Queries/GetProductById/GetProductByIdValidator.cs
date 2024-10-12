@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProductById;
 
-public class GetProductByIdValidator : AbstractValidator<GetProductByIdQuery>
+internal sealed class GetProductByIdValidator : AbstractValidator<GetProductByIdQuery>
 {
     public GetProductByIdValidator()
     {

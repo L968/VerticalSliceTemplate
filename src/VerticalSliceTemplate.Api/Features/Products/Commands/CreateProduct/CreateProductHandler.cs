@@ -9,10 +9,6 @@ internal sealed class CreateProductHandler(
     ILogger<CreateProductHandler> logger
     ) : IRequestHandler<CreateProductCommand, CreateProductResponse>
 {
-    private readonly IProductRepository _repository = repository;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ILogger<CreateProductHandler> _logger = logger;
-
     public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var product = new Product
@@ -21,16 +17,15 @@ internal sealed class CreateProductHandler(
             Price = request.Price
         };
 
-        _repository.Create(product);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        repository.Create(product);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        _logger.LogInformation("Successfully create {@Product}", product);
+        logger.LogInformation("Successfully create {@Product}", product);
 
-        return new CreateProductResponse
-        {
-            Id = product.Id,
-            Name = product.Name,
-            Price = product.Price
-        };
+        return new CreateProductResponse(
+            product.Id,
+            product.Name,
+            product.Price
+        );
     }
 }

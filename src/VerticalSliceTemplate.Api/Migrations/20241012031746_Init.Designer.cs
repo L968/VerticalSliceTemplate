@@ -11,8 +11,8 @@ using VerticalSliceTemplate.Api.Infrastructure;
 namespace VerticalSliceTemplate.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241001190834_init")]
-    partial class init
+    [Migration("20241012031746_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

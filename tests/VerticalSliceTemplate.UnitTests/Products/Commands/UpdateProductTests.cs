@@ -70,7 +70,7 @@ public class UpdateProductTests
                        .ReturnsAsync((Product?)null);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
+        AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
         Assert.Equal($"No Product found with Id {command.Id}", exception.Message);
 
         _repositoryMock.Verify(x => x.Update(It.IsAny<Product>()), Times.Never);

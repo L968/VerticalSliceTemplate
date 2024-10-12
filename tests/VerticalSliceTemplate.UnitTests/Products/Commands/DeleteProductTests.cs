@@ -34,10 +34,7 @@ public class DeleteProductTests
             Price = 100m
         };
 
-        var command = new DeleteProductCommand
-        {
-            Id = 1
-        };
+        var command = new DeleteProductCommand(Id: 1);
 
         _repositoryMock.Setup(x => x.GetByIdAsync(command.Id, It.IsAny<CancellationToken>()))
                        .ReturnsAsync(existingProduct);
@@ -54,16 +51,13 @@ public class DeleteProductTests
     public async Task ShouldThrowAppException_WhenProductDoesNotExist()
     {
         // Arrange
-        var command = new DeleteProductCommand
-        {
-            Id = 999
-        };
+        var command = new DeleteProductCommand(Id: 999);
 
         _repositoryMock.Setup(x => x.GetByIdAsync(command.Id, It.IsAny<CancellationToken>()))
                        .ReturnsAsync((Product?)null);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
+        AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
         Assert.Equal($"No Product found with Id {command.Id}", exception.Message);
 
         _repositoryMock.Verify(x => x.Delete(It.IsAny<Product>()), Times.Never);

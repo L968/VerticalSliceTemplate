@@ -9,13 +9,9 @@ internal sealed class UpdateProductHandler(
     ILogger<UpdateProductHandler> logger
     ) : IRequestHandler<UpdateProductCommand>
 {
-    private readonly IProductRepository _repository = repository;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ILogger<UpdateProductHandler> _logger = logger;
-
     public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        Product? investmentProduct = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        Product? investmentProduct = await repository.GetByIdAsync(request.Id, cancellationToken);
 
         if (investmentProduct is null)
         {
@@ -25,9 +21,9 @@ internal sealed class UpdateProductHandler(
         investmentProduct.Name = request.Name;
         investmentProduct.Price = request.Price;
 
-        _repository.Update(investmentProduct);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        repository.Update(investmentProduct);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        _logger.LogInformation("Successfully updated {@Product}", investmentProduct);
+        logger.LogInformation("Successfully updated {@Product}", investmentProduct);
     }
 }

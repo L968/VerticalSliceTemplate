@@ -2,7 +2,7 @@
 
 namespace VerticalSliceTemplate.Api.Features.Products.Commands.UpdateProduct;
 
-public class UpdateProductCommand : IRequest
+public sealed class UpdateProductCommand : IRequest
 {
     [JsonIgnore]
     public int Id { get; set; }

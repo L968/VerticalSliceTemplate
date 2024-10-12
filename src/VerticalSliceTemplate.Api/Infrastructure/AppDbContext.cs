@@ -10,9 +10,9 @@ public class AppDbContext : DbContext
     {
     }
 
-    protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        builder.Properties<decimal>()
+        configurationBuilder.Properties<decimal>()
             .HavePrecision(65, 2);
     }
 }

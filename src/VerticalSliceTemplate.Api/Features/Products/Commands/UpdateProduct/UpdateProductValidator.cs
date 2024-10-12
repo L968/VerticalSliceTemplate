@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.UpdateProduct;
 
-public class UpdateProductValidator : AbstractValidator<UpdateProductCommand>
+internal sealed class UpdateProductValidator : AbstractValidator<UpdateProductCommand>
 {
     public UpdateProductValidator()
     {

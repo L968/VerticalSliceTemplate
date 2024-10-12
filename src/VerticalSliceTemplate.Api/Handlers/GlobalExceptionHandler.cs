@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace VerticalSliceTemplate.Api.Handlers;
@@ -45,12 +44,10 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
 
     private void LogException(Exception exception, int statusCode, string traceId)
     {
-        string baseMessage = "Status Code: {StatusCode}, TraceId: {TraceId}, Message: {Message}";
-
         if (statusCode == StatusCodes.Status400BadRequest)
         {
             _logger.LogWarning(
-                $"{baseMessage}, Validation warning occurred",
+                "Status Code: {StatusCode}, TraceId: {TraceId}, Message: {Message} Validation warning occurred",
                 statusCode,
                 traceId,
                 exception.Message
@@ -60,7 +57,7 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
         {
             _logger.LogError(
                 exception,
-                baseMessage + ", Error processing request on machine {MachineName}",
+                "Status Code: {StatusCode}, TraceId: {TraceId}, Message: {Message}, Error processing request on machine {MachineName}",
                 statusCode,
                 traceId,
                 exception.Message,

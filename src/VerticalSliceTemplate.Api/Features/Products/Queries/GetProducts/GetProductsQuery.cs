@@ -1,5 +1,3 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
 
-public class GetProductsQuery : IRequest<IEnumerable<GetProductsResponse>>
-{
-}
+public sealed record GetProductsQuery : IRequest<IEnumerable<GetProductsResponse>>;

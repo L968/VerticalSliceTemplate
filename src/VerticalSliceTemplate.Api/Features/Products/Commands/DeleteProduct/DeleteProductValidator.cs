@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.DeleteProduct;
 
-public class DeleteProductValidator : AbstractValidator<DeleteProductCommand>
+internal sealed class DeleteProductValidator : AbstractValidator<DeleteProductCommand>
 {
     public DeleteProductValidator()
     {

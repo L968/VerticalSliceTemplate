@@ -1,4 +1,5 @@
-﻿using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
+﻿using VerticalSliceTemplate.Api.Domain;
+using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
 namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
 
@@ -7,23 +8,19 @@ internal sealed class GetProductsHandler(
     ILogger<GetProductsHandler> logger
     ) : IRequestHandler<GetProductsQuery, IEnumerable<GetProductsResponse>>
 {
-    private readonly IProductRepository _repository = repository;
-    private readonly ILogger<GetProductsHandler> _logger = logger;
-
     public async Task<IEnumerable<GetProductsResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
     {
-        var products = await _repository.GetAllAsync(cancellationToken);
+        IEnumerable<Product> products = await repository.GetAllAsync(cancellationToken);
 
         var response = products
-            .Select(p => new GetProductsResponse
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price
-            })
+            .Select(p => new GetProductsResponse(
+                p.Id,
+                p.Name,
+                p.Price
+            ))
             .ToList();
 
-        _logger.LogInformation("Successfully retrieved {Count} products", response.Count);
+        logger.LogInformation("Successfully retrieved {Count} products", response.Count);
 
         return response;
     }

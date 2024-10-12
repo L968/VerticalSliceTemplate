@@ -27,14 +27,13 @@ public class CreateProductTests
     public async Task ShouldCreateNewProduct_WhenProductDoesNotExist()
     {
         // Arrange
-        var command = new CreateProductCommand
-        {
-            Name = "New Product",
-            Price = 150m
-        };
+        var command = new CreateProductCommand(
+            Name: "New Product",
+            Price: 150m
+        );
 
         // Act
-        var result = await _handler.Handle(command, CancellationToken.None);
+        CreateProductResponse result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         Assert.NotNull(result);

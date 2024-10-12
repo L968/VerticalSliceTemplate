@@ -35,10 +35,10 @@ public class GetProductByIdTests
         _repositoryMock.Setup(x => x.GetByIdAsync(1, It.IsAny<CancellationToken>()))
                        .ReturnsAsync(investmentProduct);
 
-        var query = new GetProductByIdQuery { Id = 1 };
+        var query = new GetProductByIdQuery(Id: 1);
 
         // Act
-        var result = await _handler.Handle(query, CancellationToken.None);
+        GetProductByIdResponse result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
         Assert.NotNull(result);
@@ -51,13 +51,13 @@ public class GetProductByIdTests
     public async Task ShouldThrowAppException_WhenProductDoesNotExist()
     {
         // Arrange
-        var query = new GetProductByIdQuery { Id = 999 };
+        var query = new GetProductByIdQuery(Id: 999);
 
         _repositoryMock.Setup(x => x.GetByIdAsync(999, It.IsAny<CancellationToken>()))
                        .ReturnsAsync((Product?)null);
 
         // Act & Assert
-        var exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(query, CancellationToken.None));
+        AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(query, CancellationToken.None));
         Assert.Equal("Product with Id 999 not found", exception.Message);
     }
 }
