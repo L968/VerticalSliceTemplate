@@ -2,10 +2,12 @@
 
 namespace VerticalSliceTemplate.Api.Behaviours;
 
-public class PerformanceBehaviour<TRequest, TResponse>(ILogger<TRequest> logger) : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+internal sealed class PerformanceBehaviour<TRequest, TResponse>(
+    ILogger<TRequest> logger)
+    : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : notnull
 {
     private readonly Stopwatch _timer = new();
-    private readonly ILogger<TRequest> _logger = logger;
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
@@ -21,7 +23,7 @@ public class PerformanceBehaviour<TRequest, TResponse>(ILogger<TRequest> logger)
         {
             string requestName = typeof(TRequest).Name;
 
-            _logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
+            logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
                 requestName, elapsedMilliseconds, request);
         }
 
