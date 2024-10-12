@@ -12,7 +12,7 @@ public class ProductRepository(AppDbContext context) : IProductRepository
         return await _context.Products.ToListAsync(cancellationToken);
     }
 
-    public async Task<Product?> GetByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _context.Products.FindAsync([id], cancellationToken);
     }

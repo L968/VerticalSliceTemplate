@@ -5,6 +5,6 @@ internal sealed class GetProductByIdValidator : AbstractValidator<GetProductById
     public GetProductByIdValidator()
     {
         RuleFor(p => p.Id)
-            .GreaterThan(0);
+            .NotEmpty();
     }
 }

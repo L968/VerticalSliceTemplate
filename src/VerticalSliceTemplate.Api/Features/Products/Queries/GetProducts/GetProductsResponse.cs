@@ -1,7 +1,7 @@
 ﻿namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
 
 public sealed record GetProductsResponse(
-    int Id,
+    Guid Id,
     string Name,
     decimal Price
 );

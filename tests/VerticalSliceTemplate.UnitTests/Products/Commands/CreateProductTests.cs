@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using VerticalSliceTemplate.Api.Domain;
-using VerticalSliceTemplate.Api.Exceptions;
 using VerticalSliceTemplate.Api.Features.Products.Commands.CreateProduct;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 

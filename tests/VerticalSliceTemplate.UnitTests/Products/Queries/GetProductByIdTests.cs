@@ -25,24 +25,22 @@ public class GetProductByIdTests
     public async Task ShouldReturnProduct_WhenProductExists()
     {
         // Arrange
-        var investmentProduct = new Product
-        {
-            Id = 1,
-            Name = "Test Product",
-            Price = 100m
-        };
+        var investmentProduct = new Product(
+            name: "Test Product",
+            price: 100m
+        );
 
-        _repositoryMock.Setup(x => x.GetByIdAsync(1, It.IsAny<CancellationToken>()))
+        _repositoryMock.Setup(x => x.GetByIdAsync(investmentProduct.Id, It.IsAny<CancellationToken>()))
                        .ReturnsAsync(investmentProduct);
 
-        var query = new GetProductByIdQuery(Id: 1);
+        var query = new GetProductByIdQuery(Id: investmentProduct.Id);
 
         // Act
         GetProductByIdResponse result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(1, result.Id);
+        Assert.Equal(investmentProduct.Id, result.Id);
         Assert.Equal("Test Product", result.Name);
         Assert.Equal(100m, result.Price);
     }
@@ -51,9 +49,9 @@ public class GetProductByIdTests
     public async Task ShouldThrowAppException_WhenProductDoesNotExist()
     {
         // Arrange
-        var query = new GetProductByIdQuery(Id: 999);
+        var query = new GetProductByIdQuery(Id: Guid.Empty);
 
-        _repositoryMock.Setup(x => x.GetByIdAsync(999, It.IsAny<CancellationToken>()))
+        _repositoryMock.Setup(x => x.GetByIdAsync(Guid.Empty, It.IsAny<CancellationToken>()))
                        .ReturnsAsync((Product?)null);
 
         // Act & Assert

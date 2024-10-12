@@ -11,19 +11,21 @@ internal sealed class UpdateProductHandler(
 {
     public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        Product? investmentProduct = await repository.GetByIdAsync(request.Id, cancellationToken);
+        Product? product = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (investmentProduct is null)
+        if (product is null)
         {
             throw new AppException($"No Product found with Id {request.Id}");
         }
 
-        investmentProduct.Name = request.Name;
-        investmentProduct.Price = request.Price;
+        product.Update(
+            product.Name,
+            product.Price
+        );
 
-        repository.Update(investmentProduct);
+        repository.Update(product);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        logger.LogInformation("Successfully updated {@Product}", investmentProduct);
+        logger.LogInformation("Successfully updated {@Product}", product);
     }
 }

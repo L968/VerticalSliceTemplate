@@ -4,7 +4,7 @@ internal static class UpdateProductEndpoint
 {
     internal static void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPut("products/{id:int}", async (int id, [FromBody] UpdateProductCommand command, IMediator mediator) =>
+        app.MapPut("products/{id:int}", async (Guid id, [FromBody] UpdateProductCommand command, IMediator mediator) =>
         {
             command.Id = id;
             await mediator.Send(command);

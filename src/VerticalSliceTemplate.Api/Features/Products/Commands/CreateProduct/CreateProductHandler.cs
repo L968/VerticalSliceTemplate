@@ -11,11 +11,10 @@ internal sealed class CreateProductHandler(
 {
     public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var product = new Product
-        {
-            Name = request.Name,
-            Price = request.Price
-        };
+        var product = new Product(
+            request.Name,
+            request.Price
+        );
 
         repository.Create(product);
         await unitOfWork.SaveChangesAsync(cancellationToken);

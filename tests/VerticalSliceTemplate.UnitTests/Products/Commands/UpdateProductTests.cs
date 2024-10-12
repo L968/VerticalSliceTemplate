@@ -27,16 +27,14 @@ public class UpdateProductTests
     public async Task ShouldUpdateProduct_WhenProductExists()
     {
         // Arrange
-        var existingProduct = new Product
-        {
-            Id = 1,
-            Name = "Old Product",
-            Price = 100m
-        };
+        var existingProduct = new Product(
+            name: "Old Product",
+            price: 100m
+        );
 
         var command = new UpdateProductCommand
         {
-            Id = 1,
+            Id = existingProduct.Id,
             Name = "Updated Product",
             Price = 150m
         };
@@ -61,7 +59,7 @@ public class UpdateProductTests
         // Arrange
         var command = new UpdateProductCommand
         {
-            Id = 999,
+            Id = Guid.Empty,
             Name = "Nonexistent Product",
             Price = 100m
         };

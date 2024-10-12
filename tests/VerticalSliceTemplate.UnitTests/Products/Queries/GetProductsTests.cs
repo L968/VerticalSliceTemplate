@@ -26,8 +26,8 @@ public class GetProductsTests
         // Arrange
         var investmentProducts = new List<Product>
         {
-            new() { Id = 1, Name = "Product A", Price = 100m },
-            new() { Id = 2, Name = "Product B", Price = 200m }
+            new(name: "Product A", price: 100m),
+            new(name: "Product B", price: 200m),
         };
 
         _repositoryMock.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>())).ReturnsAsync(investmentProducts);

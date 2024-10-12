@@ -1,8 +1,25 @@
 ﻿namespace VerticalSliceTemplate.Api.Domain;
 
-public class Product
+public sealed class Product
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = "";
-    public decimal Price { get; set; }
+    public Guid Id { get; private set; }
+    public string Name { get; private set; }
+    public decimal Price { get; private set; }
+
+    public Product(
+        string name,
+        decimal price)
+    {
+        Id = Guid.NewGuid();
+        Name = name;
+        Price = price;
+    }
+
+    public void Update(
+        string name,
+        decimal price)
+    {
+        Name = name;
+        Price = price;
+    }
 }

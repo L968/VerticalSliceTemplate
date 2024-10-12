@@ -27,14 +27,12 @@ public class DeleteProductTests
     public async Task ShouldDeleteProduct_WhenProductExists()
     {
         // Arrange
-        var existingProduct = new Product
-        {
-            Id = 1,
-            Name = "Product to Delete",
-            Price = 100m
-        };
+        var existingProduct = new Product(
+            name: "Product to Delete",
+            price: 100m
+        );
 
-        var command = new DeleteProductCommand(Id: 1);
+        var command = new DeleteProductCommand(Id: existingProduct.Id);
 
         _repositoryMock.Setup(x => x.GetByIdAsync(command.Id, It.IsAny<CancellationToken>()))
                        .ReturnsAsync(existingProduct);
@@ -51,7 +49,7 @@ public class DeleteProductTests
     public async Task ShouldThrowAppException_WhenProductDoesNotExist()
     {
         // Arrange
-        var command = new DeleteProductCommand(Id: 999);
+        var command = new DeleteProductCommand(Id: Guid.Empty);
 
         _repositoryMock.Setup(x => x.GetByIdAsync(command.Id, It.IsAny<CancellationToken>()))
                        .ReturnsAsync((Product?)null);

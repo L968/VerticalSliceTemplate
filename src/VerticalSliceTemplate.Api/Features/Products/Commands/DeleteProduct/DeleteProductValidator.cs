@@ -5,6 +5,6 @@ internal sealed class DeleteProductValidator : AbstractValidator<DeleteProductCo
     public DeleteProductValidator()
     {
         RuleFor(p => p.Id)
-            .GreaterThan(0);
+            .NotEmpty();
     }
 }
