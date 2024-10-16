@@ -1,5 +1,4 @@
-﻿using FluentValidation.AspNetCore;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 using VerticalSliceTemplate.Api.Behaviours;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories;
@@ -18,7 +17,6 @@ internal static class ApplicationServiceExtensions
         });
 
         services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
-        services.AddFluentValidationAutoValidation();
         ValidatorOptions.Global.LanguageManager.Culture = CultureInfo.InvariantCulture;
 
         services.AddScoped<IProductRepository, ProductRepository>();

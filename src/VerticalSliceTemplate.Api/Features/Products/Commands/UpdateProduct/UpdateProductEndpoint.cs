@@ -1,8 +1,10 @@
-﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.UpdateProduct;
+﻿using VerticalSliceTemplate.Api.Endpoints;
 
-internal static class UpdateProductEndpoint
+namespace VerticalSliceTemplate.Api.Features.Products.Commands.UpdateProduct;
+
+internal sealed class UpdateProductEndpoint : IEndpoint
 {
-    internal static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPut("products/{id:int}", async (Guid id, [FromBody] UpdateProductCommand command, IMediator mediator) =>
         {
@@ -14,4 +16,3 @@ internal static class UpdateProductEndpoint
         .WithTags(Tags.Products);
     }
 }
-

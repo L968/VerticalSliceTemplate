@@ -1,8 +1,10 @@
-﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.DeleteProduct;
+﻿using VerticalSliceTemplate.Api.Endpoints;
 
-internal static class DeleteProductEndpoint
+namespace VerticalSliceTemplate.Api.Features.Products.Commands.DeleteProduct;
+
+internal sealed class DeleteProductEndpoint : IEndpoint
 {
-    internal static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapDelete("products/{id:Guid}", async (Guid id, IMediator mediator) =>
         {
@@ -12,4 +14,3 @@ internal static class DeleteProductEndpoint
         .WithTags(Tags.Products);
     }
 }
-

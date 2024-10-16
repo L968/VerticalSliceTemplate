@@ -1,8 +1,10 @@
-﻿namespace VerticalSliceTemplate.Api.Features.Products.Commands.CreateProduct;
+﻿using VerticalSliceTemplate.Api.Endpoints;
 
-internal static class CreateProductEndpoint
+namespace VerticalSliceTemplate.Api.Features.Products.Commands.CreateProduct;
+
+internal sealed class CreateProductEndpoint : IEndpoint
 {
-    internal static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("products", async (CreateProductCommand command, ISender sender) =>
         {

@@ -1,8 +1,10 @@
-﻿namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
+﻿using VerticalSliceTemplate.Api.Endpoints;
 
-internal static class GetProductsEndpoint
+namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
+
+internal sealed class GetProductsEndpoint : IEndpoint
 {
-    internal static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet("products", async (IMediator mediator) =>
         {
@@ -14,4 +16,3 @@ internal static class GetProductsEndpoint
         .WithTags(Tags.Products);
     }
 }
-
