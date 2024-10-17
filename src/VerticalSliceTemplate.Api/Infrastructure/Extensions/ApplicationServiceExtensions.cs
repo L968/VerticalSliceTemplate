@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using Evently.Common.Application.Behaviors;
 using VerticalSliceTemplate.Api.Behaviours;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
@@ -14,6 +15,7 @@ internal static class ApplicationServiceExtensions
         {
             config.RegisterServicesFromAssembly(assembly);
             config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+            config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
         });
 
         services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using VerticalSliceTemplate.Api.Endpoints;
 using VerticalSliceTemplate.Api.Infrastructure.Extensions;
 
 namespace VerticalSliceTemplate.Api.Infrastructure;
@@ -11,9 +12,10 @@ public static class DependencyInjection
 
         services.AddDatabase();
         services.AddApplicationServices(assembly);
+        services.AddEndpoints(assembly);
         services.AddCorsConfiguration();
         services.AddHealthChecksConfiguration();
-        services.AddSwaggerConfiguration();
+        services.AddDocumentationConfiguration();
 
         return services;
     }

@@ -1,25 +1,35 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace VerticalSliceTemplate.Api.Handlers;
 
-internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
+internal sealed class GlobalExceptionHandler(
+    ILogger<GlobalExceptionHandler> logger
+    ) : IExceptionHandler
 {
-    private readonly ILogger<GlobalExceptionHandler> _logger = logger;
-
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
         Exception exception,
         CancellationToken cancellationToken)
     {
-        string traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
         ProblemDetails problemDetails = CreateProblemDetails(exception);
 
-        LogException(exception, problemDetails.Status!.Value, traceId);
+        LogException(
+            exception: exception,
+            statusCode: problemDetails.Status!.Value,
+            traceId: Activity.Current?.Id ?? httpContext.TraceIdentifier
+        );
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;
-        httpContext.Response.ContentType = "application/json";
-        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+
+        if (problemDetails is ValidationProblemDetails validationProblemDetails)
+        {
+            await httpContext.Response.WriteAsJsonAsync(validationProblemDetails, cancellationToken);
+        }
+        else
+        {
+            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+        }
 
         return true;
     }
@@ -30,14 +40,28 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
         {
             AppException appException => new ProblemDetails
             {
-                Status = StatusCodes.Status400BadRequest,
                 Title = "Bad Request",
-                Detail = appException.Message
+                Detail = appException.Message,
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Status = StatusCodes.Status400BadRequest,
+            },
+            ValidationException validationException => new ValidationProblemDetails
+            {
+                Title = "Validation Failed",
+                Detail = "One or more validation errors occurred.",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Status = StatusCodes.Status400BadRequest,
+                Errors = validationException.Errors
+                    .GroupBy(e => e.PropertyName)
+                    .ToDictionary(
+                        g => g.Key,
+                        g => g.Select(e => e.ErrorMessage).ToArray())
             },
             _ => new ProblemDetails
             {
+                Title = "Internal Server Error",
+                Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
                 Status = StatusCodes.Status500InternalServerError,
-                Title = "Internal Server Error"
             }
         };
     }
@@ -46,7 +70,7 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
     {
         if (statusCode == StatusCodes.Status400BadRequest)
         {
-            _logger.LogWarning(
+            logger.LogWarning(
                 "Status Code: {StatusCode}, TraceId: {TraceId}, Message: {Message} Validation warning occurred",
                 statusCode,
                 traceId,
@@ -55,7 +79,7 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
         }
         else
         {
-            _logger.LogError(
+            logger.LogError(
                 exception,
                 "Status Code: {StatusCode}, TraceId: {TraceId}, Message: {Message}, Error processing request on machine {MachineName}",
                 statusCode,

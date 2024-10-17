@@ -11,6 +11,13 @@ internal sealed class CreateProductHandler(
 {
     public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
+        Product existingProduct = await repository.GetByNameAsync(request.Name, cancellationToken);
+
+        if (existingProduct is not null)
+        {
+            throw new AppException($"A product with name \"{request.Name}\" already exists");
+        }
+
         var product = new Product(
             request.Name,
             request.Price

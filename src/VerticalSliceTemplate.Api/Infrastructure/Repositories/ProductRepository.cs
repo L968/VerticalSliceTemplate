@@ -7,7 +7,7 @@ public class ProductRepository(AppDbContext context) : IProductRepository
 {
     private readonly AppDbContext _context = context;
 
-    public async Task<IEnumerable<Product>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Product>> GetAsync(CancellationToken cancellationToken)
     {
         return await _context.Products.ToListAsync(cancellationToken);
     }
@@ -15,6 +15,11 @@ public class ProductRepository(AppDbContext context) : IProductRepository
     public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _context.Products.FindAsync([id], cancellationToken);
+    }
+
+    public async Task<Product?> GetByNameAsync(string name, CancellationToken cancellationToken)
+    {
+        return await _context.Products.SingleOrDefaultAsync(p => p.Name == name, cancellationToken);
     }
 
     public Product Create(Product product)

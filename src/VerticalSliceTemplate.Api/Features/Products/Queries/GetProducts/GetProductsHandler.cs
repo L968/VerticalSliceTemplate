@@ -10,7 +10,7 @@ internal sealed class GetProductsHandler(
 {
     public async Task<IEnumerable<GetProductsResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Product> products = await repository.GetAllAsync(cancellationToken);
+        IEnumerable<Product> products = await repository.GetAsync(cancellationToken);
 
         var response = products
             .Select(p => new GetProductsResponse(

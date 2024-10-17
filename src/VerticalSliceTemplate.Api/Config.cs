@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api;
 
-public static class Config
+internal static class Config
 {
     public static string DatabaseConnectionString { get; private set; } = "";
     public static string[] AllowedOrigins { get; private set; } = [];

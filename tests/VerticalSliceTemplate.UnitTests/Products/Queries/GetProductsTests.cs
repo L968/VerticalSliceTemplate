@@ -30,7 +30,7 @@ public class GetProductsTests
             new(name: "Product B", price: 200m),
         };
 
-        _repositoryMock.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>())).ReturnsAsync(investmentProducts);
+        _repositoryMock.Setup(x => x.GetAsync(It.IsAny<CancellationToken>())).ReturnsAsync(investmentProducts);
         var query = new GetProductsQuery();
 
         // Act
@@ -47,7 +47,7 @@ public class GetProductsTests
     public async Task ShouldReturnEmptyList_WhenNoProductsExist()
     {
         // Arrange
-        _repositoryMock.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>())).ReturnsAsync([]);
+        _repositoryMock.Setup(x => x.GetAsync(It.IsAny<CancellationToken>())).ReturnsAsync([]);
         var query = new GetProductsQuery();
 
         // Act

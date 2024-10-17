@@ -6,7 +6,7 @@ internal sealed class GetProductByIdEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("products/{id:int}", async (Guid id, IMediator mediator) =>
+        app.MapGet("product/{id:int}", async (Guid id, IMediator mediator) =>
         {
             var query = new GetProductByIdQuery(id);
             GetProductByIdResponse? response = await mediator.Send(query);

@@ -6,7 +6,7 @@ internal sealed class UpdateProductEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPut("products/{id:int}", async (Guid id, [FromBody] UpdateProductCommand command, IMediator mediator) =>
+        app.MapPut("product/{id:int}", async (Guid id, [FromBody] UpdateProductCommand command, IMediator mediator) =>
         {
             command.Id = id;
             await mediator.Send(command);
