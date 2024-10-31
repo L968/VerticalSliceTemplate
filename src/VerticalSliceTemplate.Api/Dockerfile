@@ -9,6 +9,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+COPY Directory.Build.props ./
 COPY ["src/VerticalSliceTemplate.Api/VerticalSliceTemplate.Api.csproj", "src/VerticalSliceTemplate.Api/"]
 RUN dotnet restore "./src/VerticalSliceTemplate.Api/VerticalSliceTemplate.Api.csproj"
 COPY . .
