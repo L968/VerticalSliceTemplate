@@ -1,9 +1,9 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using VerticalSliceTemplate.Api.Endpoints;
-using VerticalSliceTemplate.Api.Handlers;
 using VerticalSliceTemplate.Api.Infrastructure;
 using VerticalSliceTemplate.Api.Infrastructure.Extensions;
+using VerticalSliceTemplate.Api.Middleware;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

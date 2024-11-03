@@ -15,7 +15,7 @@ public static class DependencyInjection
         services.AddEndpoints(assembly);
         services.AddCorsConfiguration();
         services.AddHealthChecksConfiguration();
-        services.AddDocumentationConfiguration();
+        services.AddDocumentation();
 
         return services;
     }

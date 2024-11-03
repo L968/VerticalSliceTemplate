@@ -4,7 +4,7 @@ namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
 
 internal static class DocumentationExtensions
 {
-    public static IServiceCollection AddDocumentationConfiguration(this IServiceCollection services)
+    public static IServiceCollection AddDocumentation(this IServiceCollection services)
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -21,7 +21,7 @@ internal static class DocumentationExtensions
 
         app.MapScalarApiReference(options => {
             options
-                .WithTitle("VerticalSliceTemplate API")
+                .WithTitle("VerticalSliceTemplate Api")
                 .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
         });
 

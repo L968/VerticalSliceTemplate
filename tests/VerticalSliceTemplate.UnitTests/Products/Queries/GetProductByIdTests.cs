@@ -56,6 +56,6 @@ public class GetProductByIdTests
 
         // Act & Assert
         AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(query, CancellationToken.None));
-        Assert.Equal("Product with Id 999 not found", exception.Message);
+        Assert.Equal($"Product with Id {query.Id} not found", exception.Message);
     }
 }

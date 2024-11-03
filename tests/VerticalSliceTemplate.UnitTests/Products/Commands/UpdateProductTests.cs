@@ -49,7 +49,7 @@ public class UpdateProductTests
         _repositoryMock.Verify(x => x.Update(existingProduct), Times.Once);
         _unitOfWorkMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
 
-        Assert.Equal("Updated Product", existingProduct.Name);
+        Assert.Equal(command.Name, existingProduct.Name);
         Assert.Equal(150m, existingProduct.Price);
     }
 

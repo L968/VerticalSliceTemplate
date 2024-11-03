@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace VerticalSliceTemplate.Api.Handlers;
+namespace VerticalSliceTemplate.Api.Middleware;
 
 internal sealed class GlobalExceptionHandler(
     ILogger<GlobalExceptionHandler> logger

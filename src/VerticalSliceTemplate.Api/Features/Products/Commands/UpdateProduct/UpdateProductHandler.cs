@@ -19,8 +19,8 @@ internal sealed class UpdateProductHandler(
         }
 
         product.Update(
-            product.Name,
-            product.Price
+            request.Name,
+            request.Price
         );
 
         repository.Update(product);

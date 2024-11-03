@@ -7,7 +7,7 @@ internal static class Config
 
     public static void Init(IConfiguration configuration)
     {
-        DatabaseConnectionString = configuration.GetConnectionString("Database") ?? throw new ConfigurationMissingException("ConnectionStrings:Database");
-        AllowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>() ?? throw new ConfigurationMissingException("AllowedOrigins");
+        DatabaseConnectionString = configuration.GetConnectionString("Database") ?? throw new MissingConfigurationException("ConnectionStrings:Database");
+        AllowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>() ?? throw new MissingConfigurationException("AllowedOrigins");
     }
 }
