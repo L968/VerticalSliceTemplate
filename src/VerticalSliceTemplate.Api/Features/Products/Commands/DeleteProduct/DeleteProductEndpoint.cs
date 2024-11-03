@@ -6,9 +6,9 @@ internal sealed class DeleteProductEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapDelete("product/{id:Guid}", async (Guid id, IMediator mediator) =>
+        app.MapDelete("product/{id:Guid}", async (Guid id, ISender sender) =>
         {
-            await mediator.Send(new DeleteProductCommand(id));
+            await sender.Send(new DeleteProductCommand(id));
             return Results.NoContent();
         })
         .WithTags(Tags.Products);

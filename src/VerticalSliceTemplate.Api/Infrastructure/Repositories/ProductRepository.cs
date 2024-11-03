@@ -3,7 +3,7 @@ using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
 namespace VerticalSliceTemplate.Api.Infrastructure.Repositories;
 
-public class ProductRepository(AppDbContext context) : IProductRepository
+internal class ProductRepository(AppDbContext context) : IProductRepository
 {
     private readonly AppDbContext _context = context;
 
