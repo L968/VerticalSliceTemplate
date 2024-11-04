@@ -18,8 +18,6 @@ services:
     image: mysql:8.4.0
     container_name: verticalslicetemplate.mysql
     restart: unless-stopped
-    networks:
-      - verticalslicetemplate-bridge
     environment:
       MYSQL_DATABASE: verticalslicetemplate
       MYSQL_ROOT_PASSWORD: root
@@ -27,6 +25,8 @@ services:
       - 3306:3306
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - verticalslicetemplate-bridge
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       retries: 5
