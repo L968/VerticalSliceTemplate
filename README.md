@@ -41,6 +41,8 @@ dotnet new --install .
 To create a new project using the Vertical Slice template, use the command:
 
 ```bash
+cd ..
+
 dotnet new verticalslice-template -o "YourProjectName"
 ```
 
