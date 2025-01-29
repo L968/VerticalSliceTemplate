@@ -4,7 +4,7 @@ using VerticalSliceTemplate.Api.Infrastructure.Extensions;
 
 namespace VerticalSliceTemplate.Api.Infrastructure;
 
-public static class DependencyInjection
+internal static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
     {

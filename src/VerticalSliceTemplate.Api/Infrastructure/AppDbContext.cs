@@ -2,7 +2,7 @@
 
 namespace VerticalSliceTemplate.Api.Infrastructure;
 
-public class AppDbContext : DbContext
+internal class AppDbContext : DbContext
 {
     public virtual DbSet<Product> Products { get; set; }
 

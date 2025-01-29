@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Domain;
 
-public sealed class Product
+internal sealed class Product
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; }

@@ -2,7 +2,7 @@
 
 namespace VerticalSliceTemplate.Api.Infrastructure.Repositories;
 
-public sealed class UnitOfWork(AppDbContext dbContext) : IUnitOfWork
+internal sealed class UnitOfWork(AppDbContext dbContext) : IUnitOfWork
 {
     private readonly AppDbContext _dbContext = dbContext;
 

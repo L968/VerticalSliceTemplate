@@ -1,6 +1,6 @@
 ﻿namespace VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
-public interface IUnitOfWork
+internal interface IUnitOfWork
 {
     Task SaveChangesAsync(CancellationToken cancellationToken);
 }

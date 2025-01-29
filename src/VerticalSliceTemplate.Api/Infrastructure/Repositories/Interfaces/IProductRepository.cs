@@ -2,7 +2,7 @@
 
 namespace VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
-public interface IProductRepository
+internal interface IProductRepository
 {
     Task<IEnumerable<Product>> GetAsync(CancellationToken cancellationToken);
     Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
