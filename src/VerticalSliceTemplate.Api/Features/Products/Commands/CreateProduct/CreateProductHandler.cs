@@ -26,7 +26,7 @@ internal sealed class CreateProductHandler(
         repository.Create(product);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        logger.LogInformation("Successfully create {@Product}", product);
+        logger.LogInformation("Successfully created {@Product}", product);
 
         return new CreateProductResponse(
             product.Id,
