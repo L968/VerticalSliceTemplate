@@ -55,7 +55,7 @@ To run the application with Docker Compose, use the following command:
 ```bash
 cd YourProjectName
 
-docker-compose up
+docker-compose up -d
 ```
 
 This command will build the Docker containers, set up the application, and run it along with the MySQL database.
