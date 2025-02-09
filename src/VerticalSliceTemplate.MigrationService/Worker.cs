@@ -2,7 +2,6 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using OpenTelemetry.Trace;
 using VerticalSliceTemplate.Api.Infrastructure;
 
 namespace VerticalSliceTemplate.MigrationService;
@@ -29,7 +28,7 @@ internal sealed class Worker(
         }
         catch (Exception ex)
         {
-            activity?.RecordException(ex);
+            activity?.AddException(ex);
             throw;
         }
 

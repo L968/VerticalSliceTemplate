@@ -23,7 +23,7 @@ public class CreateProductTests
     }
 
     [Fact]
-    public async Task ShouldCreateNewProduct_WhenProductDoesNotExist()
+    public async Task WhenProductDoesNotExist_ShouldCreateNewProduct()
     {
         // Arrange
         var command = new CreateProductCommand(

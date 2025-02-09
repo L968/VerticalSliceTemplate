@@ -1,5 +1,3 @@
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using VerticalSliceTemplate.Api.Endpoints;
 using VerticalSliceTemplate.Api.Infrastructure;
 using VerticalSliceTemplate.Api.Infrastructure.Extensions;
@@ -26,10 +24,5 @@ app.MapEndpoints();
 app.UseExceptionHandler(o => { });
 
 app.UseHttpsRedirection();
-
-app.MapHealthChecks("health", new HealthCheckOptions
-{
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-});
 
 await app.RunAsync();

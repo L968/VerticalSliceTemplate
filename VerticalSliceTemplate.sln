@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticalSliceTemplate.Aspir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticalSliceTemplate.MigrationService", "src\VerticalSliceTemplate.MigrationService\VerticalSliceTemplate.MigrationService.csproj", "{01F4D3DB-3F84-4DD8-A862-1D2784E0CCE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticalSliceTemplate.IntegrationTests", "tests\VerticalSliceTemplate.IntegrationTests\VerticalSliceTemplate.IntegrationTests.csproj", "{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{01F4D3DB-3F84-4DD8-A862-1D2784E0CCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F4D3DB-3F84-4DD8-A862-1D2784E0CCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F4D3DB-3F84-4DD8-A862-1D2784E0CCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{2998F394-EED0-4AD9-91F6-8FEFFE6C7018} = {A27EF577-3458-46B0-91A9-4CF8F78F3121}
 		{BDBB162F-3DB4-4F3F-B5BA-FD0B7328C05A} = {A27EF577-3458-46B0-91A9-4CF8F78F3121}
 		{01F4D3DB-3F84-4DD8-A862-1D2784E0CCE4} = {1F81BD05-46BA-4053-A716-107129364218}
+		{6B4FC2F9-218B-4A20-849B-3B3D7EA8E44A} = {73C7F6B0-3C0F-4529-B8A3-EF806F809F78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD382CF2-FC23-45BC-8B69-28D7E62F5A4A}

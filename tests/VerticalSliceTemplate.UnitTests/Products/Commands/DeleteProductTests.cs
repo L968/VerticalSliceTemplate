@@ -24,7 +24,7 @@ public class DeleteProductTests
     }
 
     [Fact]
-    public async Task ShouldDeleteProduct_WhenProductExists()
+    public async Task WhenProductExists_ShouldDeleteProduct()
     {
         // Arrange
         var existingProduct = new Product(
@@ -46,7 +46,7 @@ public class DeleteProductTests
     }
 
     [Fact]
-    public async Task ShouldThrowAppException_WhenProductDoesNotExist()
+    public async Task WhenProductDoesNotExist_ShouldThrowAppException()
     {
         // Arrange
         var command = new DeleteProductCommand(Id: Guid.Empty);

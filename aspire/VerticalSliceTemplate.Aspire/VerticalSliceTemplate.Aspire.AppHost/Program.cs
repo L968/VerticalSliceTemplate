@@ -4,7 +4,7 @@ IResourceBuilder<ParameterResource> mysqlPassword = builder.AddParameter("mysqlP
 
 IResourceBuilder<MySqlServerResource> mysql = builder.AddMySql("verticalslicetemplate-mysql", password: mysqlPassword)
     .WithImageTag("9.2.0")
-    .WithDataVolume()
+    //.WithDataVolume()
     .WithLifetime(ContainerLifetime.Persistent);
 
 IResourceBuilder<MySqlDatabaseResource> mysqldb = mysql.AddDatabase("verticalslicetemplate-mysqldb", "verticalslicetemplate");

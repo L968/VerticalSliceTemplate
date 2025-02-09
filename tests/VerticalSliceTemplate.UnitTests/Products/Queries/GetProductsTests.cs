@@ -21,7 +21,7 @@ public class GetProductsTests
     }
 
     [Fact]
-    public async Task ShouldReturnListOfProducts_WhenProductsExist()
+    public async Task WhenProductsExist_ShouldReturnListOfProducts()
     {
         // Arrange
         var investmentProducts = new List<Product>
@@ -44,7 +44,7 @@ public class GetProductsTests
     }
 
     [Fact]
-    public async Task ShouldReturnEmptyList_WhenNoProductsExist()
+    public async Task WhenNoProductsExist_ShouldReturnEmptyList()
     {
         // Arrange
         _repositoryMock.Setup(x => x.GetAsync(It.IsAny<CancellationToken>())).ReturnsAsync([]);

@@ -24,7 +24,7 @@ public class UpdateProductTests
     }
 
     [Fact]
-    public async Task ShouldUpdateProduct_WhenProductExists()
+    public async Task WhenProductExists_ShouldUpdateProduct()
     {
         // Arrange
         var existingProduct = new Product(
@@ -54,7 +54,7 @@ public class UpdateProductTests
     }
 
     [Fact]
-    public async Task ShouldThrowAppException_WhenProductDoesNotExist()
+    public async Task WhenProductDoesNotExist_ShouldThrowAppException()
     {
         // Arrange
         var command = new UpdateProductCommand

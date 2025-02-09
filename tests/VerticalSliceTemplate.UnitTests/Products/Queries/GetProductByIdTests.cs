@@ -22,7 +22,7 @@ public class GetProductByIdTests
     }
 
     [Fact]
-    public async Task ShouldReturnProduct_WhenProductExists()
+    public async Task WhenProductExists_ShouldReturnProduct()
     {
         // Arrange
         var investmentProduct = new Product(
@@ -46,7 +46,7 @@ public class GetProductByIdTests
     }
 
     [Fact]
-    public async Task ShouldThrowAppException_WhenProductDoesNotExist()
+    public async Task WhenProductDoesNotExist_ShouldThrowAppException()
     {
         // Arrange
         var query = new GetProductByIdQuery(Id: Guid.Empty);
