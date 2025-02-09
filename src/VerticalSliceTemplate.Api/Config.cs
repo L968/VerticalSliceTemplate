@@ -7,7 +7,7 @@ internal static class Config
 
     public static void Init(IConfiguration configuration)
     {
-        DatabaseConnectionString = configuration.GetConnectionString("Database") ?? throw new MissingConfigurationException("ConnectionStrings:Database");
+        DatabaseConnectionString = configuration.GetConnectionString("verticalslicetemplate-mysqldb") ?? throw new MissingConfigurationException("verticalslicetemplate-mysqldb");
         AllowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>() ?? throw new MissingConfigurationException("AllowedOrigins");
     }
 }

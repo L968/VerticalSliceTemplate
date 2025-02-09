@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <ItemGroup>
+	  <PackageReference Include="Aspire.Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\aspire\VerticalSliceTemplate.Aspire\VerticalSliceTemplate.Aspire.ServiceDefaults\VerticalSliceTemplate.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\VerticalSliceTemplate.Api\VerticalSliceTemplate.Api.csproj" />
+  </ItemGroup>
+</Project>

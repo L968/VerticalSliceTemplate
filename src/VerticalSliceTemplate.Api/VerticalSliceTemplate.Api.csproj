@@ -26,4 +26,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\aspire\VerticalSliceTemplate.Aspire\VerticalSliceTemplate.Aspire.ServiceDefaults\VerticalSliceTemplate.Aspire.ServiceDefaults.csproj" />
+  </ItemGroup>
+
 </Project>

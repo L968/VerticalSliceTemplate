@@ -5,7 +5,7 @@ This repository provides a template for creating .NET projects using **Vertical 
 ## Technologies and patterns
 
 - [Vertical Slice Architecture](https://www.milanjovanovic.tech/blog/vertical-slice-architecture) Structure your project by feature, making it easier to maintain and scale.
-- [Docker Compose](https://docs.docker.com/compose/): Pre-configured for containerization, allowing you to run the entire project with one command.
+- [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/): Pre-configured for containerization, allowing you to run the entire project with one command.
 - [MySQL](https://www.mysql.com/): The template uses MySQL as the default database, with easy setup through Docker.
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/): Simplified database management with Entity Framework Core, allowing you to apply and manage migrations effortlessly.
 - [Health Checks](https://www.nuget.org/packages/AspNetCore.HealthChecks.UI.Client): Integrated health checks for monitoring the application state.
@@ -15,8 +15,8 @@ This repository provides a template for creating .NET projects using **Vertical 
 
 ## Prerequisites
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Docker](https://www.docker.com/get-started) (with Docker Compose)
+- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [Docker](https://www.docker.com/get-started)
 
 ## Getting Started
 
@@ -46,50 +46,30 @@ cd ..
 dotnet new verticalslice-template -o "YourProjectName"
 ```
 
-## Using this Project
+## Running the Application
 
-### 1. Build and Run the Application
+### 1. Ensure Docker is running
 
-To run the application with Docker Compose, use the following command:
+Before starting the application, make sure **Docker Desktop** (Windows/macOS) or the **Docker service** (Linux) is running on your system.
+
+### 2. Run the application using .NET Aspire
 
 ```bash
-cd YourProjectName
-
-docker-compose up -d
+dotnet run --project MiniBank.AppHost
 ```
 
-This command will build the Docker containers, set up the application, and run it along with the MySQL database.
+### 3. Running Tests
+To run unit tests, execute:
 
-**Note:** When running `docker-compose up`, it may take a moment for the MySQL container to initialize completely. Ensure that the database is up and running before proceeding to the next step.
-
-### 2. Apply Database Migrations
-
-Once the application and database containers are running, you need to apply the EF Core migrations to initialize the database schema.
-
-1. Open Visual Studio and load your project.
-
-2. Open the Package Manager Console:
-   - Go to the **Tools** menu.
-   - Select **NuGet Package Manager**.
-   - Click on **Package Manager Console**.
-
-3. Execute the following command in the console:
 ```bash
-Update-Database
+ dotnet test
 ```
 
-This will apply any pending migrations and create the necessary tables in the MySQL database.
+## API Endpoints  
+Once the application is running, you can access the API via Scalar in the **YourProjectName.Api** project from the .NET Aspire dashboard.  
 
-### 3. Access the Application
-
-Once the application is running, it can be accessed at:
-
-```text
-http://localhost:5000
-```
-
-(Adjust the port if needed, depending on your configuration in docker-compose.yml).
+## Contributing
+Feel free to open issues and pull requests to improve the project!
 
 ## License
-
 This project is licensed under the [MIT License](LICENSE.txt).

@@ -14,6 +14,7 @@ internal static class DocumentationExtensions
     public static IApplicationBuilder UseDocumentation(this WebApplication app)
     {
         app.MapOpenApi();
+
         app.MapScalarApiReference(options => {
             options
                 .WithTitle("VerticalSliceTemplate Api")
