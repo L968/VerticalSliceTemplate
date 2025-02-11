@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace VerticalSliceTemplate.Api.Behaviours;
+namespace VerticalSliceTemplate.Api.Behaviors;
 
 internal sealed class ValidationPipelineBehavior<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)

@@ -2,7 +2,7 @@
 
 internal sealed class Product
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; private init; }
     public string Name { get; private set; }
     public decimal Price { get; private set; }
 

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
-using VerticalSliceTemplate.Api.Behaviours;
+using VerticalSliceTemplate.Api.Behaviors;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories;
 using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
@@ -13,7 +13,7 @@ internal static class ApplicationServiceExtensions
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(assembly);
-            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
             config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
         });
 
