@@ -55,7 +55,7 @@ Before starting the application, make sure **Docker Desktop** (Windows/macOS) or
 ### 2. Run the application using .NET Aspire
 
 ```bash
-dotnet run --project MiniBank.AppHost
+dotnet run --project YourProjectName.AppHost
 ```
 
 ### 3. Running Tests
