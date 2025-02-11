@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Evently.Common.Application.Behaviors;
+namespace VerticalSliceTemplate.Api.Behaviours;
 
 internal sealed class ValidationPipelineBehavior<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)
