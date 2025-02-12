@@ -5,7 +5,7 @@ namespace VerticalSliceTemplate.Api.Endpoints;
 
 internal static class EndpointExtensions
 {
-    public static IServiceCollection AddEndpoints(this IServiceCollection services, params Assembly[] assemblies)
+    internal static IServiceCollection AddEndpoints(this IServiceCollection services, params Assembly[] assemblies)
     {
         ServiceDescriptor[] serviceDescriptors = assemblies
             .SelectMany(a => a.GetTypes())
@@ -19,7 +19,7 @@ internal static class EndpointExtensions
         return services;
     }
 
-    public static IApplicationBuilder MapEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
+    internal static IApplicationBuilder MapEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
     {
         IEnumerable<IEndpoint> endpoints = app.Services.GetRequiredService<IEnumerable<IEndpoint>>();
 

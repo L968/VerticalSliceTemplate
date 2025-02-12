@@ -9,7 +9,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
 builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
+
 builder.Host.AddSerilogLogging();
 
 WebApplication app = builder.Build();
