@@ -15,7 +15,7 @@ internal sealed class CreateProductHandler(
 
         if (existingProduct is not null)
         {
-            throw new AppException($"A product with name \"{request.Name}\" already exists");
+            throw new AppException(DomainErrors.ProductErrors.ProductAlreadyExists(request.Name));
         }
 
         var product = new Product(

@@ -15,7 +15,7 @@ internal sealed class UpdateProductHandler(
 
         if (product is null)
         {
-            throw new AppException($"No Product found with Id {request.Id}");
+            throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
         }
 
         product.Update(

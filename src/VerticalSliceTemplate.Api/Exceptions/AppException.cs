@@ -1,4 +1,8 @@
-﻿namespace VerticalSliceTemplate.Api.Exceptions;
+﻿using VerticalSliceTemplate.Api.Domain;
 
-#pragma warning disable CA1515
-public class AppException(string message) : Exception(message);
+namespace VerticalSliceTemplate.Api.Exceptions;
+
+public class AppException(Error error) : Exception(error.Message)
+{
+    public ErrorType ErrorType { get; } = error.ErrorType;
+}

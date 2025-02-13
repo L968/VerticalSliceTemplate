@@ -15,7 +15,7 @@ internal sealed class DeleteProductHandler(
 
         if (investmentProduct is null)
         {
-            throw new AppException($"No Product found with Id {request.Id}");
+            throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
         }
 
         repository.Delete(investmentProduct);

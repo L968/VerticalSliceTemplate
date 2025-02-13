@@ -17,11 +17,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="Infrastructure\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\aspire\VerticalSliceTemplate.Aspire\VerticalSliceTemplate.Aspire.ServiceDefaults\VerticalSliceTemplate.Aspire.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<InternalsVisibleTo Include="VerticalSliceTemplate.UnitTests" />
+	<InternalsVisibleTo Include="VerticalSliceTemplate.MigrationService" />
+	<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ internal sealed class GetProductByIdHandler(
 
         if (product is null)
         {
-            throw new AppException($"Product with Id {request.Id} not found");
+            throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
         }
 
         logger.LogInformation("Successfully retrieved  Product with Id {Id}", request.Id);
