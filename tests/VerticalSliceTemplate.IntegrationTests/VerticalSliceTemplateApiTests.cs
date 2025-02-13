@@ -45,17 +45,17 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
     public async Task GetProductById_WhenProductDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange
-        string nonExistentProductId = Guid.Empty.ToString();
+        string nonExistentProductId = Guid.NewGuid().ToString();
 
         // Act
         HttpResponseMessage response = await _httpClient.GetAsync($"/product/{nonExistentProductId}");
 
         // Assert
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
     [Fact]
-    public async Task CreateProduct_WhenValid_ShouldReturnOk()
+    public async Task CreateProduct_WhenValid_ShouldReturnCreated()
     {
         // Arrange
         var createProductCommand = new
@@ -72,7 +72,7 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
     }
 
     [Fact]
-    public async Task UpdateProduct_WhenProductExists_ShouldReturnOk()
+    public async Task UpdateProduct_WhenProductExists_ShouldReturnNoContent()
     {
         // Arrange
         var createProductCommand = new
@@ -101,7 +101,7 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
     public async Task UpdateProduct_WhenProductDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange
-        string nonExistentProductId = Guid.Empty.ToString();
+        string nonExistentProductId = Guid.NewGuid().ToString();
         var updateProductCommand = new
         {
             name = "Updated Product",
@@ -112,7 +112,7 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
         HttpResponseMessage response = await _httpClient.PutAsJsonAsync($"/product/{nonExistentProductId}", updateProductCommand);
 
         // Assert
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
     [Fact]
@@ -139,17 +139,17 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
     public async Task DeleteProduct_WhenProductDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange
-        string nonExistentProductId = Guid.Empty.ToString();
+        string nonExistentProductId = Guid.NewGuid().ToString();
 
         // Act
         HttpResponseMessage response = await _httpClient.DeleteAsync($"/product/{nonExistentProductId}");
 
         // Assert
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 }
 
 internal sealed class CreatedProductResponse
 {
-    public string Id { get; set; } = default!;
+    public string Id { get; set; }
 }

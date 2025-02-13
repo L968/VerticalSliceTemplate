@@ -11,14 +11,14 @@ internal sealed class DeleteProductHandler(
 {
     public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        Product? investmentProduct = await repository.GetByIdAsync(request.Id, cancellationToken);
+        Product? existingProduct = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (investmentProduct is null)
+        if (existingProduct is null)
         {
             throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
         }
 
-        repository.Delete(investmentProduct);
+        repository.Delete(existingProduct);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Successfully deleted Product with Id {Id}", request.Id);
