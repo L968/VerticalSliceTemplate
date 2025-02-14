@@ -1,10 +1,8 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using VerticalSliceTemplate.Api.Behaviors;
-using VerticalSliceTemplate.Api.Infrastructure.Repositories;
-using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
-namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
+namespace VerticalSliceTemplate.Api.Extensions;
 
 internal static class ApplicationServiceExtensions
 {
@@ -19,9 +17,6 @@ internal static class ApplicationServiceExtensions
 
         services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
         ValidatorOptions.Global.LanguageManager.Culture = CultureInfo.InvariantCulture;
-
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

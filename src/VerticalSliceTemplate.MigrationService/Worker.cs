@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using VerticalSliceTemplate.Api.Infrastructure;
+using VerticalSliceTemplate.Api.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.MigrationService;
 

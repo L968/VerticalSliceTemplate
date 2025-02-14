@@ -1,4 +1,4 @@
-using VerticalSliceTemplate.Api.Infrastructure;
+using VerticalSliceTemplate.Api.Infrastructure.Database;
 using VerticalSliceTemplate.MigrationService;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);

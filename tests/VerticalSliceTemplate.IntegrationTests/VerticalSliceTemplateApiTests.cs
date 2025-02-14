@@ -116,7 +116,7 @@ public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplate
     }
 
     [Fact]
-    public async Task DeleteProduct_WhenProductExists_ShouldReturnOk()
+    public async Task DeleteProduct_WhenProductExists_ShouldReturnNoContent()
     {
         // Arrange
         var createProductCommand = new

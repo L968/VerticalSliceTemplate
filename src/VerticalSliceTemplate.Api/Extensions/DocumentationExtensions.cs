@@ -1,6 +1,6 @@
 ﻿using Scalar.AspNetCore;
 
-namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
+namespace VerticalSliceTemplate.Api.Extensions;
 
 internal static class DocumentationExtensions
 {
@@ -15,7 +15,8 @@ internal static class DocumentationExtensions
     {
         app.MapOpenApi();
 
-        app.MapScalarApiReference(options => {
+        app.MapScalarApiReference(options =>
+        {
             options
                 .WithTitle("VerticalSliceTemplate Api")
                 .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);

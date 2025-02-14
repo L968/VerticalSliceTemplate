@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using VerticalSliceTemplate.Api.Endpoints;
-using VerticalSliceTemplate.Api.Infrastructure.Extensions;
+using VerticalSliceTemplate.Api.Extensions;
 
-namespace VerticalSliceTemplate.Api.Infrastructure;
+namespace VerticalSliceTemplate.Api;
 
 internal static class DependencyInjection
 {

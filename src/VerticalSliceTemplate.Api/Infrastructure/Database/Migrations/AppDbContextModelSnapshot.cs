@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using VerticalSliceTemplate.Api.Infrastructure;
+using VerticalSliceTemplate.Api.Infrastructure.Database;
 
 #nullable disable
 

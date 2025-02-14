@@ -1,4 +1,6 @@
-﻿namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
+﻿using VerticalSliceTemplate.Api.Infrastructure.Database;
+
+namespace VerticalSliceTemplate.Api.Extensions;
 
 internal static class HealthCheckExtensions
 {

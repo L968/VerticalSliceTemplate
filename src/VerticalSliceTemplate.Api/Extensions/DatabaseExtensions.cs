@@ -1,4 +1,8 @@
-﻿namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
+﻿using VerticalSliceTemplate.Api.Domain.Products;
+using VerticalSliceTemplate.Api.Infrastructure.Database;
+using VerticalSliceTemplate.Api.Infrastructure.Database.Repositories;
+
+namespace VerticalSliceTemplate.Api.Extensions;
 
 internal static class ServiceCollectionExtensions
 {
@@ -14,6 +18,10 @@ internal static class ServiceCollectionExtensions
                     mysqlOptions => mysqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)
                 )
         );
+
+        services.AddScoped<IProductRepository, ProductRepository>();
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
 
         return services;
     }

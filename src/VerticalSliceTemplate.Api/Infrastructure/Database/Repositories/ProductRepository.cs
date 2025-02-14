@@ -1,7 +1,7 @@
-﻿using VerticalSliceTemplate.Api.Domain;
-using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
+﻿using VerticalSliceTemplate.Api.Domain.Products;
+using VerticalSliceTemplate.Api.Infrastructure.Database;
 
-namespace VerticalSliceTemplate.Api.Infrastructure.Repositories;
+namespace VerticalSliceTemplate.Api.Infrastructure.Database.Repositories;
 
 internal class ProductRepository(AppDbContext context) : IProductRepository
 {

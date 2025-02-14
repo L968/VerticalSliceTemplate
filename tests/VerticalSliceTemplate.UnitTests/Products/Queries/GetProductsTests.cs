@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
-using VerticalSliceTemplate.Api.Domain;
+using VerticalSliceTemplate.Api.Domain.Products;
 using VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
-using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
 
 namespace VerticalSliceTemplate.UnitTests.Products.Queries;
 

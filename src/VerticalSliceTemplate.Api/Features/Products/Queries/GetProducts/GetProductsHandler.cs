@@ -1,5 +1,4 @@
-﻿using VerticalSliceTemplate.Api.Domain;
-using VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
+﻿using VerticalSliceTemplate.Api.Domain.Products;
 
 namespace VerticalSliceTemplate.Api.Features.Products.Queries.GetProducts;
 

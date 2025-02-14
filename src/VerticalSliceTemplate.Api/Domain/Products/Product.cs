@@ -1,4 +1,4 @@
-﻿namespace VerticalSliceTemplate.Api.Domain;
+﻿namespace VerticalSliceTemplate.Api.Domain.Products;
 
 internal sealed class Product
 {

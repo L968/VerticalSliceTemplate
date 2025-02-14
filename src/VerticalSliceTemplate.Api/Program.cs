@@ -1,8 +1,9 @@
 using Serilog;
+using VerticalSliceTemplate.Api;
 using VerticalSliceTemplate.Api.Endpoints;
-using VerticalSliceTemplate.Api.Infrastructure;
-using VerticalSliceTemplate.Api.Infrastructure.Extensions;
+using VerticalSliceTemplate.Api.Extensions;
 using VerticalSliceTemplate.Api.Middleware;
+using VerticalSliceTemplate.Aspire.ServiceDefaults;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

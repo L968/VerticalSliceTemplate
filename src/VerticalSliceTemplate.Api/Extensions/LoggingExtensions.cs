@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace VerticalSliceTemplate.Api.Infrastructure.Extensions;
+namespace VerticalSliceTemplate.Api.Extensions;
 
 internal static class LoggingExtensions
 {

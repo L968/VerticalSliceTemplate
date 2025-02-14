@@ -1,6 +1,4 @@
-﻿using VerticalSliceTemplate.Api.Domain;
-
-namespace VerticalSliceTemplate.Api.Infrastructure.Repositories.Interfaces;
+﻿namespace VerticalSliceTemplate.Api.Domain.Products;
 
 internal interface IProductRepository
 {

@@ -1,14 +1,10 @@
-﻿using VerticalSliceTemplate.Api.Domain;
+﻿using VerticalSliceTemplate.Api.Domain.Products;
 
-namespace VerticalSliceTemplate.Api.Infrastructure;
+namespace VerticalSliceTemplate.Api.Infrastructure.Database;
 
-internal class AppDbContext : DbContext
+internal class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options), IUnitOfWork
 {
     public virtual DbSet<Product> Products { get; set; }
-
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
-    }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
