@@ -2,11 +2,11 @@ using System.Net.Http.Json;
 
 namespace VerticalSliceTemplate.IntegrationTests;
 
-public class VerticalSliceTemplateApiTests : IClassFixture<VerticalSliceTemplateApiFixture>
+public class ProductTests : IClassFixture<VerticalSliceTemplateApiFixture>
 {
     private readonly HttpClient _httpClient;
 
-    public VerticalSliceTemplateApiTests(VerticalSliceTemplateApiFixture fixture)
+    public ProductTests(VerticalSliceTemplateApiFixture fixture)
     {
         _httpClient = fixture.HttpClient!;
     }

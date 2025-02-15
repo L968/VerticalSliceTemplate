@@ -9,4 +9,5 @@
     <ProjectReference Include="..\..\aspire\VerticalSliceTemplate.Aspire\VerticalSliceTemplate.Aspire.ServiceDefaults\VerticalSliceTemplate.Aspire.ServiceDefaults.csproj" />
     <ProjectReference Include="..\VerticalSliceTemplate.Application\VerticalSliceTemplate.Application.csproj" />
   </ItemGroup>
+
 </Project>
