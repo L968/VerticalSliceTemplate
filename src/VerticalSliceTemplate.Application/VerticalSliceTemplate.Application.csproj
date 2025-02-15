@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
@@ -15,4 +16,5 @@
 		<InternalsVisibleTo Include="VerticalSliceTemplate.MigrationService" />
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 	</ItemGroup>
+
 </Project>
