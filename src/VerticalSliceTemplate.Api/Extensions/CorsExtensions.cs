@@ -9,7 +9,6 @@ internal static class CorsExtensions
             options.AddDefaultPolicy(builder =>
             {
                 builder
-                    .WithOrigins(Config.AllowedOrigins)
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowAnyOrigin();

@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
-using VerticalSliceTemplate.Api.Domain;
+using Microsoft.AspNetCore.Mvc;
+using VerticalSliceTemplate.Application.Common.Exceptions;
+using VerticalSliceTemplate.Application.Domain;
 
 namespace VerticalSliceTemplate.Api.Middleware;
 
