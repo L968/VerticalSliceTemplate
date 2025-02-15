@@ -1,6 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain;
-
-namespace VerticalSliceTemplate.Application.Common.Exceptions;
+﻿namespace VerticalSliceTemplate.Application.Domain.Exceptions;
 
 public class AppException(Error error) : Exception(error.Message)
 {

@@ -1,4 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain;
+﻿using VerticalSliceTemplate.Application.Domain.Exceptions;
 using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
@@ -15,7 +15,7 @@ internal sealed class CreateProductHandler(
 
         if (existingProduct)
         {
-            throw new AppException(DomainErrors.ProductErrors.ProductAlreadyExists(request.Name));
+            throw new AppException(ProductErrors.ProductAlreadyExists(request.Name));
         }
 
         var product = new Product(

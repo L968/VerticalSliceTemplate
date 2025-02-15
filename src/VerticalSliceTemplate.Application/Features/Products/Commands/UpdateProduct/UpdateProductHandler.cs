@@ -1,4 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain;
+﻿using VerticalSliceTemplate.Application.Domain.Exceptions;
 using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
@@ -15,7 +15,7 @@ internal sealed class UpdateProductHandler(
 
         if (product is null)
         {
-            throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
+            throw new AppException(ProductErrors.ProductNotFound(request.Id));
         }
 
         product.Update(

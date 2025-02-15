@@ -17,6 +17,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddHealthChecksConfiguration(builder.Configuration);
 
+builder.Services.AddOpenApi();
+
 builder.Host.AddSerilogLogging();
 
 WebApplication app = builder.Build();
@@ -25,12 +27,12 @@ app.UseSerilogRequestLogging();
 
 app.MapDefaultEndpoints();
 
+app.MapEndpoints();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDocumentation();
 }
-
-app.MapEndpoints();
 
 app.UseExceptionHandler(o => { });
 

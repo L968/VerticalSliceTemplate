@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VerticalSliceTemplate.Application.Common.Behaviors;
 using VerticalSliceTemplate.Application.Common.Endpoints;
+using VerticalSliceTemplate.Application.Common.Extensions;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application;

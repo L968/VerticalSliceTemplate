@@ -1,4 +1,4 @@
-﻿using VerticalSliceTemplate.Application;
+﻿using VerticalSliceTemplate.Application.Common.Extensions;
 
 namespace VerticalSliceTemplate.Api.Extensions;
 

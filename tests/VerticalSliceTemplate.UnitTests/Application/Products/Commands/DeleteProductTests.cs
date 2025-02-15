@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
-using VerticalSliceTemplate.Application.Common.Exceptions;
 using VerticalSliceTemplate.Application.Domain;
+using VerticalSliceTemplate.Application.Domain.Exceptions;
 using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Commands.DeleteProduct;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
@@ -52,7 +52,7 @@ public class DeleteProductTests : IClassFixture<AppDbContextFixture>
 
         // Act & Assert
         AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
-        Assert.Equal(DomainErrors.ProductErrors.ProductNotFound(command.Id).Message, exception.Message);
+        Assert.Equal(ProductErrors.ProductNotFound(command.Id).Message, exception.Message);
         Assert.Equal(ErrorType.NotFound, exception.ErrorType);
     }
 }

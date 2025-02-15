@@ -77,7 +77,7 @@ public class ProductTests : IClassFixture<VerticalSliceTemplateApiFixture>
         // Arrange
         var createProductCommand = new
         {
-            name = "Test Product",
+            name = "Product to be updated",
             price = 19.99
         };
 
@@ -121,12 +121,12 @@ public class ProductTests : IClassFixture<VerticalSliceTemplateApiFixture>
         // Arrange
         var createProductCommand = new
         {
-            name = "Test Product",
+            name = "Product to be deleted",
             price = 19.99
         };
 
         HttpResponseMessage createResponse = await _httpClient.PostAsJsonAsync("/product", createProductCommand);
-        CreatedProductResponse? createdProduct = await createResponse.Content.ReadFromJsonAsync<CreatedProductResponse>();
+        CreatedProductResponse createdProduct = await createResponse.Content.ReadFromJsonAsync<CreatedProductResponse>();
 
         // Act
         HttpResponseMessage response = await _httpClient.DeleteAsync($"/product/{createdProduct!.Id}");

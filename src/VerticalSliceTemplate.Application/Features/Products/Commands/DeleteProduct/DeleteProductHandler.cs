@@ -1,5 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain;
-using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application.Features.Products.Commands.DeleteProduct;
@@ -15,7 +14,7 @@ internal sealed class DeleteProductHandler(
 
         if (existingProduct is null)
         {
-            throw new AppException(DomainErrors.ProductErrors.ProductNotFound(request.Id));
+            throw new AppException(ProductErrors.ProductNotFound(request.Id));
         }
 
         dbContext.Remove(existingProduct);
