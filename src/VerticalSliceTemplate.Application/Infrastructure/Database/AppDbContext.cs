@@ -2,9 +2,9 @@
 
 namespace VerticalSliceTemplate.Application.Infrastructure.Database;
 
-internal class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public virtual DbSet<Product> Products { get; set; }
+    internal DbSet<Product> Products { get; set; }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {

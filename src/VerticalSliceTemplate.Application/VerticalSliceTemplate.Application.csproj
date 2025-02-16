@@ -13,7 +13,6 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="VerticalSliceTemplate.UnitTests" />
-		<InternalsVisibleTo Include="VerticalSliceTemplate.MigrationService" />
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 	</ItemGroup>
 
