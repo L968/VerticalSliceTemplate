@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Moq;
-using VerticalSliceTemplate.Application.Features.Products.Commands.CreateProduct;
-using VerticalSliceTemplate.Application.Infrastructure.Database;
-using VerticalSliceTemplate.UnitTests.Application.Fixtures;
+﻿using VerticalSliceTemplate.Application.Features.Products.Commands.CreateProduct;
 
 namespace VerticalSliceTemplate.UnitTests.Application.Products.Commands;
 

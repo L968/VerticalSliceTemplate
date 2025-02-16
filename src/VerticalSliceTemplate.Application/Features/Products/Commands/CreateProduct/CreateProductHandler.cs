@@ -23,7 +23,7 @@ internal sealed class CreateProductHandler(
             request.Price
         );
 
-        dbContext.Add(product);
+        dbContext.Products.Add(product);
         await dbContext.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Successfully created {@Product}", product);

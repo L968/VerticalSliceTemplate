@@ -1,9 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Moq;
-using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
-using VerticalSliceTemplate.Application.Infrastructure.Database;
-using VerticalSliceTemplate.UnitTests.Application.Fixtures;
 
 namespace VerticalSliceTemplate.UnitTests.Application.Products.Queries;
 
@@ -26,8 +22,8 @@ public class GetProductsTests : IClassFixture<AppDbContextFixture>
         // Arrange
         var products = new List<Product>
         {
-            new Product(name: "Product A", price: 100m),
-            new Product(name: "Product B", price: 200m),
+            new(name: "Product A", price: 100m),
+            new(name: "Product B", price: 200m),
         };
 
         await _dbContext.Products.AddRangeAsync(products);

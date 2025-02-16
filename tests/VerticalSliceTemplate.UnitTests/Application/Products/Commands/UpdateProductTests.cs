@@ -1,11 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Moq;
-using VerticalSliceTemplate.Application.Domain;
-using VerticalSliceTemplate.Application.Domain.Exceptions;
-using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Commands.UpdateProduct;
-using VerticalSliceTemplate.Application.Infrastructure.Database;
-using VerticalSliceTemplate.UnitTests.Application.Fixtures;
 
 namespace VerticalSliceTemplate.UnitTests.Application.Products.Commands;
 

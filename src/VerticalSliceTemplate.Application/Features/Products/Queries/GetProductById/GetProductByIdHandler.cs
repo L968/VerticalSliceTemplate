@@ -1,5 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain.Exceptions;
-using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProductById;

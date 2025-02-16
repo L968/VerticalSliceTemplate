@@ -17,7 +17,7 @@ internal sealed class DeleteProductHandler(
             throw new AppException(ProductErrors.ProductNotFound(request.Id));
         }
 
-        dbContext.Remove(existingProduct);
+        dbContext.Products.Remove(existingProduct);
         await dbContext.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Successfully deleted Product with Id {Id}", request.Id);
