@@ -1,6 +1,6 @@
 # Vertical Slice .NET Template
 
-This repository provides a template for creating .NET projects using **Vertical Slice Architecture**, integrated with **Docker Compose**, **Entity Framework Core** and more. This template helps you quickly set up and organize your project with a modular structure and seamless database management.
+This repository provides a template for creating .NET projects using **Vertical Slice Architecture**, integrated with **.NET Aspire**, **Entity Framework** and more. This template helps you quickly set up and organize your project with a modular structure and seamless database management.
 
 ## Technologies and patterns
 
