@@ -7,7 +7,7 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.AddMySqlDbContext<AppDbContext>("verticalslicetemplate-mysqldb");
+builder.AddNpgsqlDbContext<AppDbContext>("verticalslicetemplate-postgresdb");
 
 IHost host = builder.Build();
 await host.RunAsync();

@@ -1,19 +1,20 @@
 IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
-IResourceBuilder<ParameterResource> mysqlPassword = builder.AddParameter("mysqlPassword", "root", secret: true);
+IResourceBuilder<ParameterResource> postgresPassword = builder.AddParameter("postgresPassword", "root", secret: true);
 
-IResourceBuilder<MySqlServerResource> mysql = builder.AddMySql("verticalslicetemplate-mysql", password: mysqlPassword)
-    .WithImageTag("9.2.0")
+IResourceBuilder<PostgresServerResource> postgres = builder.AddPostgres("verticalslicetemplate-postgres", password: postgresPassword)
+    .WithImageTag("17.4")
+    .WithPgWeb()
     .WithLifetime(ContainerLifetime.Persistent);
 
-IResourceBuilder<MySqlDatabaseResource> mysqldb = mysql.AddDatabase("verticalslicetemplate-mysqldb", "verticalslicetemplate");
+IResourceBuilder<PostgresDatabaseResource> postgresdb = postgres.AddDatabase("verticalslicetemplate-postgresdb", "verticalslicetemplate");
 
 builder.AddProject<Projects.VerticalSliceTemplate_Api>("verticalslicetemplate-api")
-    .WithReference(mysqldb)
-    .WaitFor(mysqldb);
+    .WithReference(postgresdb)
+    .WaitFor(postgresdb);
 
 builder.AddProject<Projects.VerticalSliceTemplate_MigrationService>("verticalslicetemplate-migrationservice")
-    .WithReference(mysqldb)
-    .WaitFor(mysqldb);
+    .WithReference(postgresdb)
+    .WaitFor(postgresdb);
 
 await builder.Build().RunAsync();

@@ -7,7 +7,7 @@ internal static class HealthCheckExtensions
     public static IServiceCollection AddHealthChecksConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHealthChecks()
-            .AddMySql(configuration.GetConnectionStringOrThrow("verticalslicetemplate-mysqldb"));
+            .AddMySql(configuration.GetConnectionStringOrThrow("verticalslicetemplate-postgresdb"));
 
         return services;
     }

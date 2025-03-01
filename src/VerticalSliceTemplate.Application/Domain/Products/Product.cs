@@ -1,10 +1,12 @@
 ﻿namespace VerticalSliceTemplate.Application.Domain.Products;
 
-internal sealed class Product
+internal sealed class Product : IAuditableEntity
 {
-    public Guid Id { get; private init; }
+    public Guid Id { get; }
     public string Name { get; private set; }
     public decimal Price { get; private set; }
+    public DateTime CreatedAtUtc { get; set; }
+    public DateTime UpdatedAtUtc { get; set; }
 
     private Product() { }
 

@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VerticalSliceTemplate.Application.Common.Behaviors;
@@ -32,16 +33,14 @@ public static class DependencyInjection
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        string dbConnectionString = configuration.GetConnectionStringOrThrow("verticalslicetemplate-mysqldb");
-
-        var serverVersion = ServerVersion.AutoDetect(dbConnectionString);
+        string dbConnectionString = configuration.GetConnectionStringOrThrow("verticalslicetemplate-postgresdb");
 
         services.AddDbContext<AppDbContext>(options =>
             options
-                .UseMySql(
-                    dbConnectionString,
-                    serverVersion,
-                    mysqlOptions => mysqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)
+                .UseNpgsql(
+                    connectionString: dbConnectionString,
+                    npgsqlOptions => npgsqlOptions
+                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, "products")
                 )
         );
 
