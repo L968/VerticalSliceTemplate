@@ -1,4 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Common;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
@@ -6,22 +6,26 @@ namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProduct
 internal sealed class GetProductsHandler(
     AppDbContext dbContext,
     ILogger<GetProductsHandler> logger
-    ) : IRequestHandler<GetProductsQuery, IEnumerable<GetProductsResponse>>
+) : IRequestHandler<GetProductsQuery, PaginatedList<GetProductsResponse>>
 {
-    public async Task<IEnumerable<GetProductsResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+    public async Task<PaginatedList<GetProductsResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Product> products = await dbContext.Products.ToListAsync(cancellationToken);
+        int totalItems = await dbContext.Products.CountAsync(cancellationToken);
 
-        var response = products
-            .Select(p => new GetProductsResponse(
-                p.Id,
-                p.Name,
-                p.Price
-            ))
-            .ToList();
+        List<GetProductsResponse> products = await dbContext.Products
+            .AsNoTracking()
+            .Skip((request.Page - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .Select(p => new GetProductsResponse(p.Id, p.Name, p.Price))
+            .ToListAsync(cancellationToken);
 
-        logger.LogInformation("Successfully retrieved {Count} products", response.Count);
+        logger.LogInformation("Successfully retrieved {Count} products", products.Count);
 
-        return response;
+        return new PaginatedList<GetProductsResponse>(
+            request.Page,
+            request.PageSize,
+            totalItems,
+            products
+        );
     }
 }

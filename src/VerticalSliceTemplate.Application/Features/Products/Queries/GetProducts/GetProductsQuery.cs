@@ -1,3 +1,5 @@
-﻿namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
+﻿using VerticalSliceTemplate.Application.Common;
 
-internal sealed record GetProductsQuery : IRequest<IEnumerable<GetProductsResponse>>;
+namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
+
+internal sealed record GetProductsQuery(int Page, int PageSize) : IRequest<PaginatedList<GetProductsResponse>>;

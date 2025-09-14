@@ -8,13 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
-	<PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0" />
+	<PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.2" />
+	<PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.4.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\VerticalSliceTemplate.Api\VerticalSliceTemplate.Api.csproj" />
+    <ProjectReference Include="..\..\..\src\VerticalSliceTemplate.Application\VerticalSliceTemplate.Application.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\..\..\src\VerticalSliceTemplate.MigrationService\VerticalSliceTemplate.MigrationService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="10.7.0.110445">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

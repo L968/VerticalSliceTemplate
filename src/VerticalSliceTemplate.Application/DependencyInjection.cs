@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using VerticalSliceTemplate.Application.Common.Behaviors;
 using VerticalSliceTemplate.Application.Common.Endpoints;
 using VerticalSliceTemplate.Application.Common.Extensions;
+using VerticalSliceTemplate.Application.Infrastructure;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application;
@@ -19,30 +20,31 @@ public static class DependencyInjection
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(assembly);
-            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+
+            config.AddOpenBehavior(typeof(PerformanceBehavior<,>));
             config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
         });
 
         services.AddValidatorsFromAssembly(assembly, includeInternalTypes: true);
         ValidatorOptions.Global.LanguageManager.Culture = CultureInfo.InvariantCulture;
 
-        services.AddEndpoints(assembly);
-
         return services;
     }
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        string dbConnectionString = configuration.GetConnectionStringOrThrow("verticalslicetemplate-postgresdb");
+        string dbConnectionString = configuration.GetConnectionStringOrThrow(ServiceNames.PostgresDb);
 
-        services.AddDbContext<AppDbContext>(options =>
+        services.AddDbContext<AppDbContext>((serviceProvider, options) =>
             options
                 .UseNpgsql(
                     connectionString: dbConnectionString,
                     npgsqlOptions => npgsqlOptions
-                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, "products")
+                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, ServiceNames.DatabaseName)
                 )
         );
+
+        services.AddEndpoints(typeof(DependencyInjection).Assembly);
 
         return services;
     }

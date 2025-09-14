@@ -1,4 +1,5 @@
 ﻿using Aspire.Hosting;
+using VerticalSliceTemplate.Application.Infrastructure;
 
 namespace VerticalSliceTemplate.IntegrationTests;
 
@@ -22,8 +23,8 @@ public sealed class VerticalSliceTemplateApiFixture : IAsyncLifetime
         await _app.StartAsync();
 
         // Create HttpClient and wait for the resource to be running
-        HttpClient = _app.CreateHttpClient("verticalslicetemplate-api");
-        await _resourceNotificationService.WaitForResourceAsync("verticalslicetemplate-api", KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(30));
+        HttpClient = _app.CreateHttpClient(ServiceNames.Api);
+        await _resourceNotificationService.WaitForResourceAsync(ServiceNames.Api, KnownResourceStates.Running).WaitAsync(TimeSpan.FromSeconds(30));
     }
 
     public async Task DisposeAsync()

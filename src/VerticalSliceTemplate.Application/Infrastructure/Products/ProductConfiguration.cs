@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VerticalSliceTemplate.Application.Domain.Products;
 
-namespace VerticalSliceTemplate.Application.Infrastructure.Database.Products;
+namespace VerticalSliceTemplate.Application.Infrastructure.Products;
 
 internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
 {

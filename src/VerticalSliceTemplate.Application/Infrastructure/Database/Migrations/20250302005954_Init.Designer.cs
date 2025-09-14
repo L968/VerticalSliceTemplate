@@ -12,7 +12,7 @@ using VerticalSliceTemplate.Application.Infrastructure.Database;
 namespace VerticalSliceTemplate.Application.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250224054019_Init")]
+    [Migration("20250302005954_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,7 +20,6 @@ namespace VerticalSliceTemplate.Application.Infrastructure.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("products")
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -40,15 +39,14 @@ namespace VerticalSliceTemplate.Application.Infrastructure.Database.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(65, 2)
-                        .HasColumnType("numeric(65,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime>("UpdatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", "products");
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }

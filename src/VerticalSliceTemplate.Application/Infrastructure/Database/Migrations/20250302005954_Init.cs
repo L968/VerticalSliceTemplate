@@ -12,17 +12,13 @@ namespace VerticalSliceTemplate.Application.Infrastructure.Database.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "products");
-
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "products",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric(65,2)", precision: 65, scale: 2, nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -36,8 +32,7 @@ namespace VerticalSliceTemplate.Application.Infrastructure.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products",
-                schema: "products");
+                name: "Products");
         }
     }
 }

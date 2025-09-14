@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 
 namespace VerticalSliceTemplate.Application.Common.Behaviors;
 
@@ -14,7 +13,7 @@ internal sealed class PerformanceBehavior<TRequest, TResponse>(
     {
         _timer.Start();
 
-        TResponse? response = await next();
+        TResponse? response = await next(cancellationToken);
 
         _timer.Stop();
 

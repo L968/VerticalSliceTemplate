@@ -1,3 +1,4 @@
+using VerticalSliceTemplate.Application.Infrastructure;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 using VerticalSliceTemplate.MigrationService;
 
@@ -7,7 +8,7 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.AddNpgsqlDbContext<AppDbContext>("verticalslicetemplate-postgresdb");
+builder.AddNpgsqlDbContext<AppDbContext>(ServiceNames.PostgresDb);
 
 IHost host = builder.Build();
 await host.RunAsync();
