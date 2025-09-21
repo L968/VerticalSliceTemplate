@@ -1,4 +1,5 @@
 ﻿using VerticalSliceTemplate.Application.Common;
+using VerticalSliceTemplate.Application.Common.Results;
 using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
 
@@ -37,15 +38,17 @@ public class GetProductsTests : IClassFixture<AppDbContextFixture>
         var query = new GetProductsQuery(Page: 1, PageSize: 2);
 
         // Act
-        PaginatedList<GetProductsResponse> result = await _handler.Handle(query, CancellationToken.None);
+        Result<PaginatedList<GetProductsResponse>> result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal(2, result.Items.Count());
-        Assert.Equal(3, result.TotalItems);
-        Assert.Equal(2, result.TotalPages);
-        Assert.Contains(result.Items, p => p.Name == "Product A" && p.Price == 100m);
-        Assert.Contains(result.Items, p => p.Name == "Product B" && p.Price == 200m);
+        Assert.True(result.IsSuccess);
+        PaginatedList<GetProductsResponse> paginatedList = result.Value;
+        Assert.NotNull(paginatedList);
+        Assert.Equal(2, paginatedList.Items.Count());
+        Assert.Equal(3, paginatedList.TotalItems);
+        Assert.Equal(2, paginatedList.TotalPages);
+        Assert.Contains(paginatedList.Items, p => p.Name == "Product A" && p.Price == 100m);
+        Assert.Contains(paginatedList.Items, p => p.Name == "Product B" && p.Price == 200m);
     }
 
     [Fact]
@@ -58,12 +61,14 @@ public class GetProductsTests : IClassFixture<AppDbContextFixture>
         var query = new GetProductsQuery(Page: 1, PageSize: 10);
 
         // Act
-        PaginatedList<GetProductsResponse> result = await _handler.Handle(query, CancellationToken.None);
+        Result<PaginatedList<GetProductsResponse>> result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Empty(result.Items);
-        Assert.Equal(0, result.TotalItems);
-        Assert.Equal(0, result.TotalPages);
+        Assert.True(result.IsSuccess);
+        PaginatedList<GetProductsResponse> paginatedList = result.Value;
+        Assert.NotNull(paginatedList);
+        Assert.Empty(paginatedList.Items);
+        Assert.Equal(0, paginatedList.TotalItems);
+        Assert.Equal(0, paginatedList.TotalPages);
     }
 }

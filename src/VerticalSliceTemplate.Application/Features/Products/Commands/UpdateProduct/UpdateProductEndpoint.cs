@@ -9,9 +9,9 @@ internal sealed class UpdateProductEndpoint : IEndpoint
         app.MapPut("product/{id:Guid}", async (Guid id, UpdateProductCommand command, ISender sender, CancellationToken cancellationToken) =>
         {
             command.Id = id;
-            await sender.Send(command, cancellationToken);
 
-            return Results.NoContent();
+            Result result = await sender.Send(command, cancellationToken);
+            return result.Match(Results.NoContent, ApiResults.Problem);
         })
         .WithTags(Tags.Products);
     }

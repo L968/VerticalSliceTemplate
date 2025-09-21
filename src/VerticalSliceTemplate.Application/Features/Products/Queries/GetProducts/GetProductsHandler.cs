@@ -6,9 +6,9 @@ namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProduct
 internal sealed class GetProductsHandler(
     AppDbContext dbContext,
     ILogger<GetProductsHandler> logger
-) : IRequestHandler<GetProductsQuery, PaginatedList<GetProductsResponse>>
+) : IRequestHandler<GetProductsQuery, Result<PaginatedList<GetProductsResponse>>>
 {
-    public async Task<PaginatedList<GetProductsResponse>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+    public async Task<Result<PaginatedList<GetProductsResponse>>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
     {
         int totalItems = await dbContext.Products.CountAsync(cancellationToken);
 

@@ -8,9 +8,12 @@ internal sealed class CreateProductEndpoint : IEndpoint
     {
         app.MapPost("product", async (CreateProductCommand command, ISender sender, CancellationToken cancellationToken) =>
         {
-            CreateProductResponse response = await sender.Send(command, cancellationToken);
+            Result<CreateProductResponse> result = await sender.Send(command, cancellationToken);
 
-            return Results.Created($"/products/{response.Id}", response);
+            return result.Match(
+                onSuccess: response => Results.Created($"/products/{response.Id}", response),
+                onFailure: ApiResults.Problem
+            );
         })
         .WithTags(Tags.Products);
     }

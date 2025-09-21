@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VerticalSliceTemplate.Application.Common;
 using VerticalSliceTemplate.Application.Common.Endpoints;
+using VerticalSliceTemplate.Application.Common.Results;
 
 namespace VerticalSliceTemplate.Application.Features.Products.Queries.GetProducts;
 
@@ -15,9 +16,9 @@ internal sealed class GetProductsEndpoint : IEndpoint
                 [FromQuery] int pageSize = 10) =>
             {
                 var query = new GetProductsQuery(page, pageSize);
-                PaginatedList<GetProductsResponse> response = await sender.Send(query, cancellationToken);
 
-                return Results.Ok(response);
+                Result<PaginatedList<GetProductsResponse>> result = await sender.Send(query, cancellationToken);
+                return result.Match(Results.Ok, ApiResults.Problem);
             })
             .WithTags(Tags.Products);
     }

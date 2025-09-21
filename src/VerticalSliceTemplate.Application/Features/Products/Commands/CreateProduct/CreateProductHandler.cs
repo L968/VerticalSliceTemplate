@@ -1,5 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Domain.Exceptions;
-using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Infrastructure.Database;
 
 namespace VerticalSliceTemplate.Application.Features.Products.Commands.CreateProduct;
@@ -7,15 +6,15 @@ namespace VerticalSliceTemplate.Application.Features.Products.Commands.CreatePro
 internal sealed class CreateProductHandler(
     AppDbContext dbContext,
     ILogger<CreateProductHandler> logger
-    ) : IRequestHandler<CreateProductCommand, CreateProductResponse>
+    ) : IRequestHandler<CreateProductCommand, Result<CreateProductResponse>>
 {
-    public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CreateProductResponse>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         bool existingProduct = await dbContext.Products.AnyAsync(p => p.Name == request.Name, cancellationToken);
 
         if (existingProduct)
         {
-            throw new AppException(ProductErrors.ProductAlreadyExists(request.Name));
+            return Result.Failure(ProductErrors.ProductAlreadyExists(request.Name));
         }
 
         var product = new Product(

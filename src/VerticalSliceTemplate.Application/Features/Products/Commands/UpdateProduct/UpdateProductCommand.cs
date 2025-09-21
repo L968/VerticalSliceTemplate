@@ -2,7 +2,7 @@
 
 namespace VerticalSliceTemplate.Application.Features.Products.Commands.UpdateProduct;
 
-internal sealed record UpdateProductCommand : IRequest
+internal sealed record UpdateProductCommand : IRequest<Result>
 {
     [JsonIgnore]
     public Guid Id { get; set; }

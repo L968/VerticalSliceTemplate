@@ -1,10 +1,12 @@
-﻿namespace VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Common.Results;
+
+namespace VerticalSliceTemplate.Application.Domain.Products;
 
 internal static class ProductErrors
 {
     public static Error ProductAlreadyExists(string productName) =>
-        new($"A product with name \"{productName}\" already exists.", ErrorType.Conflict);
+        Error.Conflict("Product.ProductAlreadyExists", $"A product with name \"{productName}\" already exists.");
 
     public static Error ProductNotFound(Guid productId) =>
-        new($"The product with identifier \"{productId}\" was not found.", ErrorType.NotFound);
+        Error.NotFound("Product.ProductNotFound", $"The product with identifier \"{productId}\" was not found.");
 }

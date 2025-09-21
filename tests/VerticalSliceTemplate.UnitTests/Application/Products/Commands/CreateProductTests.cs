@@ -1,4 +1,5 @@
-﻿using VerticalSliceTemplate.Application.Features.Products.Commands.CreateProduct;
+﻿using VerticalSliceTemplate.Application.Common.Results;
+using VerticalSliceTemplate.Application.Features.Products.Commands.CreateProduct;
 
 namespace VerticalSliceTemplate.UnitTests.Application.Products.Commands;
 
@@ -24,11 +25,12 @@ public class CreateProductTests : IClassFixture<AppDbContextFixture>
         );
 
         // Act
-        CreateProductResponse result = await _handler.Handle(command, CancellationToken.None);
+        Result<CreateProductResponse> result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal("New Product", result.Name);
-        Assert.Equal(150m, result.Price);
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.Equal("New Product", result.Value.Name);
+        Assert.Equal(150m, result.Value.Price);
     }
 }

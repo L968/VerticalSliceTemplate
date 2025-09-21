@@ -1,3 +1,3 @@
 ﻿namespace VerticalSliceTemplate.Application.Features.Products.Commands.DeleteProduct;
 
-internal sealed record DeleteProductCommand(Guid Id) : IRequest;
+internal sealed record DeleteProductCommand(Guid Id) : IRequest<Result>;

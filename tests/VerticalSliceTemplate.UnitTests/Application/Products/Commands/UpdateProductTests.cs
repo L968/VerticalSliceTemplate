@@ -1,4 +1,5 @@
-﻿using VerticalSliceTemplate.Application.Domain.Products;
+﻿using VerticalSliceTemplate.Application.Common.Results;
+using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Commands.UpdateProduct;
 
 namespace VerticalSliceTemplate.UnitTests.Application.Products.Commands;
@@ -36,9 +37,10 @@ public class UpdateProductTests : IClassFixture<AppDbContextFixture>
         };
 
         // Act
-        await _handler.Handle(command, CancellationToken.None);
+        Result result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
+        Assert.True(result.IsSuccess);
         Product? updatedProduct = await _dbContext.Products.FindAsync(existingProduct.Id);
         Assert.NotNull(updatedProduct);
         Assert.Equal("Updated Product", updatedProduct.Name);
@@ -46,7 +48,7 @@ public class UpdateProductTests : IClassFixture<AppDbContextFixture>
     }
 
     [Fact]
-    public async Task WhenProductDoesNotExist_ShouldThrowAppException()
+    public async Task WhenProductDoesNotExist_ShouldReturnFailureResult()
     {
         // Arrange
         var command = new UpdateProductCommand
@@ -56,9 +58,12 @@ public class UpdateProductTests : IClassFixture<AppDbContextFixture>
             Price = 100m
         };
 
-        // Act & Assert
-        AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(command, CancellationToken.None));
-        Assert.Equal(ProductErrors.ProductNotFound(command.Id).Message, exception.Message);
-        Assert.Equal(ErrorType.NotFound, exception.ErrorType);
+        // Act
+        Result result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        Assert.True(result.IsFailure);
+        Assert.Equal(ProductErrors.ProductNotFound(command.Id).Description, result.Error.Description);
+        Assert.Equal(ProductErrors.ProductNotFound(command.Id).Type, result.Error.Type);
     }
 }

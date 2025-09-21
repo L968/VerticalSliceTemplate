@@ -8,8 +8,8 @@ internal sealed class DeleteProductEndpoint : IEndpoint
     {
         app.MapDelete("product/{id:Guid}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
-            await sender.Send(new DeleteProductCommand(id), cancellationToken);
-            return Results.NoContent();
+            Result result = await sender.Send(new DeleteProductCommand(id), cancellationToken);
+            return result.Match(Results.NoContent, ApiResults.Problem);
         })
         .WithTags(Tags.Products);
     }

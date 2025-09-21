@@ -1,4 +1,4 @@
-﻿namespace VerticalSliceTemplate.Application.Domain;
+﻿namespace VerticalSliceTemplate.Application.Common.Results;
 
 public enum ErrorType
 {

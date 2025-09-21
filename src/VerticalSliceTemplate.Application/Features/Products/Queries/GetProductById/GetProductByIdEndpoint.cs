@@ -9,11 +9,9 @@ internal sealed class GetProductByIdEndpoint : IEndpoint
         app.MapGet("product/{id:Guid}", async (Guid id, ISender sender, CancellationToken cancellationToken) =>
         {
             var query = new GetProductByIdQuery(id);
-            GetProductByIdResponse? response = await sender.Send(query, cancellationToken);
 
-            return response is not null
-                ? Results.Ok(response)
-                : Results.NotFound();
+            Result<GetProductByIdResponse> result = await sender.Send(query, cancellationToken);
+            return result.Match(Results.Ok, ApiResults.Problem);
         })
         .WithTags(Tags.Products);
     }

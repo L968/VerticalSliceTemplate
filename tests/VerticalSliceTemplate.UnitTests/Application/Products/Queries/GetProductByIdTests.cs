@@ -1,3 +1,4 @@
+using VerticalSliceTemplate.Application.Common.Results;
 using VerticalSliceTemplate.Application.Domain.Products;
 using VerticalSliceTemplate.Application.Features.Products.Queries.GetProductById;
 
@@ -31,24 +32,28 @@ public class GetProductByIdTests : IClassFixture<AppDbContextFixture>
         var query = new GetProductByIdQuery(Id: existingProduct.Id);
 
         // Act
-        GetProductByIdResponse result = await _handler.Handle(query, CancellationToken.None);
+        Result<GetProductByIdResponse> result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal(existingProduct.Id, result.Id);
-        Assert.Equal("Test Product", result.Name);
-        Assert.Equal(100m, result.Price);
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.Equal(existingProduct.Id, result.Value.Id);
+        Assert.Equal("Test Product", result.Value.Name);
+        Assert.Equal(100m, result.Value.Price);
     }
 
     [Fact]
-    public async Task WhenProductDoesNotExist_ShouldThrowAppException()
+    public async Task WhenProductDoesNotExist_ShouldReturnFailureResult()
     {
         // Arrange
         var query = new GetProductByIdQuery(Id: Guid.NewGuid());
 
-        // Act & Assert
-        AppException exception = await Assert.ThrowsAsync<AppException>(() => _handler.Handle(query, CancellationToken.None));
-        Assert.Equal(ProductErrors.ProductNotFound(query.Id).Message, exception.Message);
-        Assert.Equal(ErrorType.NotFound, exception.ErrorType);
+        // Act
+        Result<GetProductByIdResponse> result = await _handler.Handle(query, CancellationToken.None);
+
+        // Assert
+        Assert.True(result.IsFailure);
+        Assert.Equal(ProductErrors.ProductNotFound(query.Id).Description, result.Error.Description);
+        Assert.Equal(ProductErrors.ProductNotFound(query.Id).Type, result.Error.Type);
     }
 }
