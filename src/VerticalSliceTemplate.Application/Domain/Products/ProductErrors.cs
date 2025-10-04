@@ -1,6 +1,4 @@
-﻿using VerticalSliceTemplate.Application.Common.Results;
-
-namespace VerticalSliceTemplate.Application.Domain.Products;
+﻿namespace VerticalSliceTemplate.Application.Domain.Products;
 
 internal static class ProductErrors
 {

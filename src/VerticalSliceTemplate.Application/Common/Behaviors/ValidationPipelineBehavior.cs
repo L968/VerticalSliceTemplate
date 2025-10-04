@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using FluentValidation.Results;
-using VerticalSliceTemplate.Application.Common.Results;
 
 namespace VerticalSliceTemplate.Application.Common.Behaviors;
 

@@ -26,5 +26,14 @@
       },
       "replaces": "verticalslicetemplate"
     }
-  }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ ".git/**" ]
+        }
+      ]
+    }
+  ]
 }
